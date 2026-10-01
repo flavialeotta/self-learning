@@ -49,7 +49,7 @@ $b_{2}$. Training the neural network happens in 3 steps:
 3. **Backpropagation**:
    - Now we want to assess the performance of the model. During training, if the result $a_{2}$ obtained is wrong,
      we need to correct the weights. How is "wrong" defined? Like in logistic regression, the error is calculated as
-     a [Log-Loss](#logloss) function. It is calculated at the very last layer (outputs), by comparing the predicted result ($a_{2}$)
+     a [Log-Loss](#log-loss) function. It is calculated at the very last layer (outputs), by comparing the predicted result ($a_{2}$)
      with the real output we were expecting ($y$):
 
      $$LogLoss = -\[y \log(a_{2}) + (1-y)log(1-a_{2})\]$$
@@ -77,7 +77,7 @@ $b_{2}$. Training the neural network happens in 3 steps:
 
 
 
-#### **Log-Loss**
+#### **Log Loss**
 As a refresher, the Log-Loss is a function that allows us to maximilize the Likelihood of the data. Said like this,
 it can sound confusing, but it is not that complicated. Let's just say that, the probability to observe the true output $y$, given the 
 computed/predicted output $\hat{y}$ is:
