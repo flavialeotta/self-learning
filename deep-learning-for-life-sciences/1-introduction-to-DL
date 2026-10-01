@@ -1,0 +1,16 @@
+# Lecture 1: Introduction to Deep Learning
+Lecturer: Bartek Wilczyński
+
+
+The first part of this lecture introduced some key concepts in Machine Learning. As I've already
+taken a course in it during my MSc, I didn't take any notes. However, the lecturer recommended the
+book "An Introduction to Statistical Learning" which is the same book I used to prepare myself for
+my ML exam: it is a wonderful book that explains all key concepts in a very simple and clear way and,
+very importantly, available [online for free](https://www.statlearning.com/).
+
+The second part of the lecture gave a summary of the story of Neural Networks. It is interesting but,
+again, I didn't take notes. Please refer to the [lecture materials](https://github.com/deeplife4eu/Lecture-materials/blob/main/Week_01/DeepLife-1-Intro.pdf)-.
+
+In the third part of the lecture, we dived into how modern NN models are built and trained. I have learnt
+that any network consisting of at least three layers (i.e. 2 stacked layers of perceptrons) can be 
+considered "deep" neutal networks.
