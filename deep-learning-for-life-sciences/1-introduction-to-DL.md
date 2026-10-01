@@ -63,7 +63,7 @@ $b_{2}$. Training the neural network happens in 3 steps:
      
    - Following the **chain rule**, the impact that the weight had on the error when we calculated $z_{2}$ is calculated as:
 
-     $$\frac{\delta LogLoss}{w_{2}} = \frac{\delta LogLoss}{\delta {z_{2}}} \cdot {\delta z_{2}}{\delta w_{2}}$$
+     $$\frac{\delta LogLoss}{w_{2}} = \frac{\delta LogLoss}{\delta {z_{2}}} \cdot \frac{\delta z_{2}}{\delta w_{2}}$$
 
      Because $z_{2} = w_{2} \cdot a_{1}$  the formula can be simplified to $\frac{\delta Log-loss}{w_{2}} = (a_{2} - y) \cdot a_{2}$.
    - The weights are updated using the **learning rate** ($\eta$):
