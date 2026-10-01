@@ -59,7 +59,7 @@ $b_{2}$. Training the neural network happens in 3 steps:
    - We first calculate the partial derivate of the error (Log-loss) with respect to the weighted sum ($z_{2}$), the one that
      allowed us to calculate the output $a_{2}$. Because we used the sygmoid (very easy to derivate), the formula can be simplified:
      
-     $$\frac{\delta LogLoss}{\delta {z_{2}}} = a_{2} - y
+     $$\frac{\delta LogLoss}{\delta {z_{2}}} = a_{2} - y$$
      
    - Following the **chain rule**, the impact that the weight had on the error when we calculated $z_{2}$ is calculated as:
 
