@@ -1,4 +1,4 @@
-# Rust Programming Language
+# Rust Programming Language: Chapters 1 to 3
 
 To open the book even offline, run this command:
 
@@ -13,9 +13,9 @@ With Rust come some interesting tools:
 -	The Rust Language Server powers IDE: inline error messages.
 
 ## Table of Contents.
-- [Rust essentials and Cargo](#i-chapter-1-rust-essentials-and-cargo)
+- [Chapter 1: Rust essentials and Cargo](#i-chapter-1-rust-essentials-and-cargo)
 - [Chapter 2](#ii-chapter-2)
-- [Common Programming Concepts](#iii-chapter-3-common-programming-concepts)
+- [Chapter 3: Common Programming Concepts](#iii-chapter-3-common-programming-concepts)
 
 ## i.	Chapter 1: Rust essentials and Cargo
 
