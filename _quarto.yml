@@ -2,7 +2,7 @@ project:
   type: website
   
 execute:
-  enabled: false
+  freeze: auto
 
 website:
   title: "Bioinformatics self-learning journey"
@@ -21,3 +21,10 @@ format:
   html:
     theme: cosmo
     toc: true
+
+profile:
+  default:
+    render:
+      - "*.qmd"
+      - "*.ipynb"
+      - "*.md"
