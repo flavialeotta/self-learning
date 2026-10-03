@@ -4,9 +4,6 @@ project:
 execute:
   freeze: auto
 
-execute:
-  freeze: auto
-
 website:
   title: "Bioinformatics self-learning journey"
   navbar:
