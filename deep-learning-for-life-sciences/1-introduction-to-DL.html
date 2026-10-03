@@ -1,0 +1,675 @@
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml" lang="en" xml:lang="en"><head>
+
+<meta charset="utf-8">
+<meta name="generator" content="quarto-1.10.18">
+
+<meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes">
+
+
+<title>introduction-to-dl – Bioinformatics self-learning journey</title>
+<style>
+/* Default styles provided by pandoc.
+** See https://pandoc.org/MANUAL.html#variables-for-html for config info.
+*/
+span.smallcaps{font-variant: small-caps;}
+div.columns{display: flex; gap: 1.5em;}
+div.column{flex: auto;}
+@media screen {
+div.columns{gap: min(4vw, 1.5em);}
+div.column{overflow-x: auto;}
+}
+div.hanging-indent{margin-left: 1.5em; text-indent: -1.5em;}
+ul.task-list{list-style: none;}
+ul.task-list li input[type="checkbox"] {
+  width: 0.8em;
+  margin: 0 0.8em 0.2em -1em; /* quarto-specific, see https://github.com/quarto-dev/quarto-cli/issues/4556 */ 
+  vertical-align: middle;
+}
+</style>
+
+
+<script src="../site_libs/quarto-nav/quarto-nav.js"></script>
+<script src="../site_libs/quarto-nav/headroom.min.js"></script>
+<script src="../site_libs/clipboard/clipboard.min.js"></script>
+<script src="../site_libs/quarto-search/autocomplete.umd.js"></script>
+<script src="../site_libs/quarto-search/fuse.min.js"></script>
+<script src="../site_libs/quarto-search/quarto-search.js"></script>
+<meta name="quarto:offset" content="../">
+<script src="../site_libs/quarto-html/quarto.js" type="module"></script>
+<script src="../site_libs/quarto-html/tabsets/tabsets.js" type="module"></script>
+<script src="../site_libs/quarto-html/popper.min.js"></script>
+<script src="../site_libs/quarto-html/tippy.umd.min.js"></script>
+<script src="../site_libs/quarto-html/anchor.min.js"></script>
+<link href="../site_libs/quarto-html/tippy.css" rel="stylesheet">
+<link href="../site_libs/quarto-html/quarto-syntax-highlighting-64a204ab8560d761af7679ceaba22944.css" rel="stylesheet" id="quarto-text-highlighting-styles">
+<script src="../site_libs/bootstrap/bootstrap.min.js"></script>
+<link href="../site_libs/bootstrap/bootstrap-icons.css" rel="stylesheet">
+<link href="../site_libs/bootstrap/bootstrap-55617497126496852ff9f5a59253c640.min.css" rel="stylesheet" append-hash="true" id="quarto-bootstrap" data-mode="light">
+<script id="quarto-search-options" type="application/json">{
+  "location": "navbar",
+  "copy-button": false,
+  "collapse-after": 3,
+  "panel-placement": "end",
+  "type": "overlay",
+  "limit": 50,
+  "keyboard-shortcut": [
+    "f",
+    "/",
+    "s"
+  ],
+  "show-item-context": false,
+  "language": {
+    "search-no-results-text": "No results",
+    "search-matching-documents-text": "matching documents",
+    "search-copy-link-title": "Copy link to search",
+    "search-hide-matches-text": "Hide additional matches",
+    "search-more-match-text": "more match in this document",
+    "search-more-matches-text": "more matches in this document",
+    "search-clear-button-title": "Clear",
+    "search-text-placeholder": "",
+    "search-detached-cancel-button-title": "Cancel",
+    "search-submit-button-title": "Submit",
+    "search-label": "Search"
+  }
+}</script>
+
+  <script src="https://cdnjs.cloudflare.com/polyfill/v3/polyfill.min.js?features=es6"></script>
+  <script defer="" src="https://cdn.jsdelivr.net/npm/mathjax@4/tex-chtml.js" type="text/javascript"></script>
+
+<script type="text/javascript">
+const typesetMath = (el) => {
+  if (window.MathJax) {
+    // MathJax Typeset
+    window.MathJax.typeset([el]);
+  } else if (window.katex) {
+    // KaTeX Render
+    var mathElements = el.getElementsByClassName("math");
+    var macros = [];
+    for (var i = 0; i < mathElements.length; i++) {
+      var texText = mathElements[i].firstChild;
+      if (mathElements[i].tagName == "SPAN" && texText && texText.data) {
+        window.katex.render(texText.data, mathElements[i], {
+          displayMode: mathElements[i].classList.contains('display'),
+          throwOnError: false,
+          macros: macros,
+          fleqn: false
+        });
+      }
+    }
+  }
+}
+window.Quarto = {
+  typesetMath
+};
+</script>
+
+</head>
+
+<body class="nav-fixed quarto-light">
+
+<div id="quarto-search-results"></div>
+  <header id="quarto-header" class="headroom fixed-top">
+    <nav class="navbar navbar-expand-lg " data-bs-theme="dark">
+      <div class="navbar-container container-fluid">
+      <div class="navbar-brand-container mx-auto">
+    <a class="navbar-brand" href="../index.html">
+    <span class="navbar-title">Bioinformatics self-learning journey</span>
+    </a>
+  </div>
+            <div id="quarto-search" class="" title="Search"></div>
+          <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarCollapse" aria-controls="navbarCollapse" role="menu" aria-expanded="false" aria-label="Toggle navigation" onclick="if (window.quartoToggleHeadroom) { window.quartoToggleHeadroom(); }">
+  <span class="navbar-toggler-icon"></span>
+</button>
+          <div class="collapse navbar-collapse" id="navbarCollapse">
+            <ul class="navbar-nav navbar-nav-scroll me-auto">
+  <li class="nav-item">
+    <a class="nav-link" href="../index.html"> 
+<span class="menu-text">Home</span></a>
+  </li>  
+  <li class="nav-item">
+    <a class="nav-link" href="../rust/"> 
+<span class="menu-text">Rust</span></a>
+  </li>  
+  <li class="nav-item">
+    <a class="nav-link" href="../deep-learning-for-life-sciences/"> 
+<span class="menu-text">Deep Learning</span></a>
+  </li>  
+  <li class="nav-item">
+    <a class="nav-link" href="../git-version-control/"> 
+<span class="menu-text">Git version control</span></a>
+  </li>  
+</ul>
+          </div> <!-- /navcollapse -->
+            <div class="quarto-navbar-tools">
+</div>
+      </div> <!-- /container-fluid -->
+    </nav>
+</header>
+<!-- content -->
+<div id="quarto-content" class="quarto-container page-columns page-rows-contents page-layout-article page-navbar">
+<!-- sidebar -->
+<!-- margin-sidebar -->
+    <div id="quarto-margin-sidebar" class="sidebar margin-sidebar">
+        <nav id="TOC" role="doc-toc" class="toc-active">
+    <h2 id="toc-title">On this page</h2>
+   
+  <ul>
+  <li><a href="#lecture-1-introduction-to-deep-learning" id="toc-lecture-1-introduction-to-deep-learning" class="nav-link active" data-scroll-target="#lecture-1-introduction-to-deep-learning">Lecture 1: Introduction to Deep Learning</a>
+  <ul class="collapse">
+  <li><a href="#modern-deep-learning" id="toc-modern-deep-learning" class="nav-link" data-scroll-target="#modern-deep-learning">Modern Deep Learning</a></li>
+  <li><a href="#adaptive-optimizers-momentum-and-adam" id="toc-adaptive-optimizers-momentum-and-adam" class="nav-link" data-scroll-target="#adaptive-optimizers-momentum-and-adam">Adaptive optimizers momentum and ADAM</a></li>
+  <li><a href="#regularization-dilution-and-dropout" id="toc-regularization-dilution-and-dropout" class="nav-link" data-scroll-target="#regularization-dilution-and-dropout">Regularization: dilution and dropout</a></li>
+  <li><a href="#refreshers" id="toc-refreshers" class="nav-link" data-scroll-target="#refreshers">Refreshers</a>
+  <ul class="collapse">
+  <li><a href="#log-loss" id="toc-log-loss" class="nav-link" data-scroll-target="#log-loss"><strong>Log Loss</strong></a></li>
+  <li><a href="#moments" id="toc-moments" class="nav-link" data-scroll-target="#moments">Moments</a></li>
+  </ul></li>
+  </ul></li>
+  </ul>
+</nav>
+    </div>
+<!-- main -->
+<main class="content" id="quarto-document-content"><header id="title-block-header" class="quarto-title-block"></header>
+
+
+
+
+<section id="lecture-1-introduction-to-deep-learning" class="level1">
+<h1>Lecture 1: Introduction to Deep Learning</h1>
+<p>Lecturer: Bartek Wilczyński</p>
+<p>The <strong>first part</strong> of this lecture introduced some key concepts in Machine Learning. As I’ve already taken a course in it during my MSc, I didn’t take any notes. However, the lecturer recommended the book “An Introduction to Statistical Learning” which is the same book I used to prepare myself for my ML exam: it is a wonderful book that explains all key concepts in a very simple and clear way and, very importantly, available <a href="https://www.statlearning.com/">online for free</a>.</p>
+<p>The <strong>second part</strong> of the lecture gave a summary of the story of Neural Networks. It is interesting but, again, I didn’t take notes. Please refer to the <a href="https://github.com/deeplife4eu/Lecture-materials/blob/main/Week_01/DeepLife-1-Intro.pdf">lecture materials</a>.</p>
+<section id="modern-deep-learning" class="level2">
+<h2 class="anchored" data-anchor-id="modern-deep-learning">Modern Deep Learning</h2>
+<p>In the <strong>third part</strong> of the lecture, we dived into how modern NN models are built and trained. I have learnt that any network consisting of at least three layers (i.e.&nbsp;2 stacked layers of perceptrons) can be considered “deep” neural networks.</p>
+<p><img src="https://c.mql5.com/18/20/NN1__1.gif" width="400"></p>
+<p>Now, let’s pretend we have a neural network with three layers: there are inputs <span class="math inline">\(x\)</span>, then an hidden layer with a weight <span class="math inline">\(w_{1}\)</span> and a bias <span class="math inline">\(b_{1}\)</span>. The final layer is the output, this one has also a weight <span class="math inline">\(w_{2}\)</span> and a bias <span class="math inline">\(b_{2}\)</span>. Training the neural network happens in 3 steps:</p>
+<ol type="1">
+<li><strong>Inizializing</strong>: weights are usually inizialized randomly, while biases are usually set as 0 or very small numbers.</li>
+<li><strong>Forward pass</strong>:
+<ul>
+<li><p>inputs (<span class="math display">\[x_{i}\]</span>) enter the input layer and then are multiplied for a certain weight (<span class="math display">\[w_{i,1}\]</span>) when entering the first layer of “neurons”. Each neuron receives all inputs, each multiplied for a different weight which is specific not only for the input provided, but for the neuron that received them too;</p></li>
+<li><p>after all inputs, multiplied for their weights, reach a neuron, they are summed with each other and also by a certain amount of bias, specific of the neuron (<span class="math inline">\(b_{1}\)</span>). We will call the sum of all the weighted inputs and biases for the first neuron <span class="math inline">\(z_{1}\)</span>:</p>
+<p><span class="math display">\[z_{1} = w_{i,1}x_{i} + w_{j,1}x{j}+...+b_{1}\]</span></p></li>
+<li><p>Before passing the value <span class="math inline">\(z_{1}\)</span> it down, the neuron needs to be “activated”. That means that, if this value <span class="math inline">\(z_{1}\)</span>, transformed into <span class="math inline">\(a_{1}\)</span> using a certain “activation function”, doesn’t reach a certain threshold, then the neuron remains inactive and the new input is not passed down.</p>
+<blockquote class="blockquote">
+<p><strong>Activation functions</strong>: there are different activation functions, but the most used is the ReLU. We will see why.</p>
+<p><span class="math display">\[sigmoid: \space \sigma(z)=\frac{1}{1+e^{-x}} \quad \quad tanh: \space tahn(x) \quad \quad ReLU: \space max(0,x)\]</span></p>
+</blockquote></li>
+<li><p>We can pretend, in this example, that the activation function is the sigmoid. <span class="math inline">\(z_{1}\)</span> is transformed into <span class="math inline">\(a_{1} = \frac{1}{1+e^{-z_{1}}}\)</span>. If <span class="math inline">\(a_{1}\)</span> reaches a certain threshold, the input passes to the second layer of neurons (in this case, also the output layer). We do the same thing again: we first sum the inputs <span class="math inline">\(z_{2} = w_{i,2}a_{i} + w_{j,2}a{j}+...+b_{2}\)</span>, then we transform the output <span class="math inline">\(a_{2} = \frac{1}{1+e^{-z_{2}}}\)</span> and, if this reaches the set treshold, it will be out final output (prediction).</p></li>
+</ul></li>
+<li><strong>Backpropagation</strong>:
+<ul>
+<li><p>Now we want to assess the performance of the model. During training, if the result <span class="math inline">\(a_{2}\)</span> obtained is wrong, we need to correct the weights. How is “wrong” defined? Like in logistic regression, the error is calculated as a <a href="#log-loss">Log-Loss</a> function. It is calculated at the very last layer (outputs), by comparing the predicted result (<span class="math inline">\(a_{2}\)</span>) with the real output we were expecting (<span class="math inline">\(y\)</span>):</p>
+<p><span class="math display">\[LogLoss = -\[y \log(a_{2}) + (1-y)log(1-a_{2})\]\]</span></p>
+<p>Remember, we usually want to optimize a model, which means to minimize a <em>Loss</em> function. In simple terms? We want the Log-Loss to be as close to 0 as possible!</p></li>
+<li><p>We first calculate the partial derivate of the error (Log-loss) with respect to the weighted sum (<span class="math inline">\(z_{2}\)</span>), the one that allowed us to calculate the output <span class="math inline">\(a_{2}\)</span>. Because we used the sygmoid (very easy to derivate), the formula can be simplified:</p>
+<p><span class="math display">\[\frac{\delta LogLoss}{\delta {z_{2}}} = a_{2} - y\]</span></p></li>
+<li><p>Following the <strong>chain rule</strong>, the impact that the weight had on the error when we calculated <span class="math inline">\(z_{2}\)</span> is calculated as:</p>
+<p><span class="math display">\[\frac{\delta LogLoss}{w_{2}} = \frac{\delta LogLoss}{\delta {z_{2}}} \cdot \frac{\delta z_{2}}{\delta w_{2}}\]</span></p>
+<p>Because <span class="math inline">\(z_{2} = w_{2} \cdot a_{1}\)</span> the formula can be simplified to <span class="math inline">\(\frac{\delta Log-loss}{w_{2}} = (a_{2} - y) \cdot a_{2}\)</span>.</p></li>
+<li><p>The weights are updated using the <strong>learning rate</strong> (<span class="math inline">\(\eta\)</span>):</p>
+<p><span class="math display">\[w_{2, new} = w_{2, old} - \eta \cdot \frac{\delta \text{LogLoss}}{\delta w_{2}}\]</span></p></li>
+<li><p>The chain rule allows the error to go back even to the first layer, to correct <span class="math inline">\(w_{1}\)</span> too:</p>
+<p><span class="math display">\[\frac{LogLoss}{w_{1}} = \frac{LogLoss}{z_{2}} \cdot \frac{z_2}{a_1} \cdot \frac{a_1}{z_1} \cdot \frac{z_1}{w_1}\]</span></p>
+<blockquote class="blockquote">
+<p><strong>What about biases?</strong>: they are updated in the same manner!</p>
+</blockquote></li>
+</ul></li>
+</ol>
+<p>These steps are repeated many times, in what we call a <em>learning loop</em>. The simples method is to take the lopp over all observations (an epoch) and adapt the weight accordin to the gradient function with a learning rate. If we do this in random order in each epoch, this is a variant of <em>Stochastic Gradient Descent</em>. Usually many learning epochs are needed to reach convergence.</p>
+</section>
+<section id="adaptive-optimizers-momentum-and-adam" class="level2">
+<h2 class="anchored" data-anchor-id="adaptive-optimizers-momentum-and-adam">Adaptive optimizers momentum and ADAM</h2>
+<p>The problem is that some weights have similar gradients while others are oscillating, and it can make it hard to reach the minimum, caused by two main problems:</p>
+<ol type="1">
+<li>the gradient can be “pulled” by some weights in the opposite direction than the global minimum (towards a local minimum “preferred” by one of the gradients);</li>
+<li>by having only one learning rate, we could be either go too fast or too slow, because some gradients might need a bigger or smaller step than others.</li>
+</ol>
+<p>The <strong>momentum</strong> algorithm adds a rescaled gradient from the previous step to the current gradient, so learning can be faster when gradients are consistent and slower if we start oscillating.</p>
+<p>ADAM (ADAptive Momentum estimation) adds another idea: by looking at the first and second <a href="#moments">moments</a> of the gradient, and adding “forgetting” factors <span class="math inline">\(\beta_1\)</span> and <span class="math inline">\(\beta_2\)</span> to the estimation process:</p>
+<ul>
+<li>First, it computes the first moment: <span class="math inline">\(m_t = \beta_1 \cdot m_{t-1} + (1-\beta_1) \cdot g_t\)</span>;</li>
+<li>then it computes the second moment: <span class="math inline">\(v_t = \beta_2 \cdot v_{t-1} + (1-\beta_2) \cdot g_t^2\)</span>;</li>
+<li>both are applied to the weights update: <span class="math inline">\(w_{new} = w_{old} - \frac{\eta}{\sqrt{v_t}+\epsilon}\cdot m_t\)</span>.</li>
+</ul>
+</section>
+<section id="regularization-dilution-and-dropout" class="level2">
+<h2 class="anchored" data-anchor-id="regularization-dilution-and-dropout">Regularization: dilution and dropout</h2>
+<p>Deep learning is prone to overfitting: you could use techniques that are used in standard ML (Lasso and Ridge), but the most popular regularization techniques are based on randomized removal of subsets of weights during training. In case of <strong>dilution</strong>, during each training epoch a random subset of weights is not updated. In the case of <strong>dropout</strong>, all weights associated to a subset of neurons will not be used at all. These techniques slow don the process of training but they make the model better.</p>
+<p>And, for today, we have finished! See you on the practical part.</p>
+<p><img src="https://gifdb.com/images/high/happy-cat-working-on-computer-cartoon-c2cinzv2rijwf3en.gif" width="500"></p>
+<hr>
+</section>
+<section id="refreshers" class="level2">
+<h2 class="anchored" data-anchor-id="refreshers">Refreshers</h2>
+<section id="log-loss" class="level3">
+<h3 class="anchored" data-anchor-id="log-loss"><strong>Log Loss</strong></h3>
+<p>As a refresher, the Log-Loss is a function that allows us to maximilize the Likelihood of the data. Said like this, it can sound confusing, but it is not that complicated. Let’s just say that, the probability to observe the true output <span class="math inline">\(y\)</span>, given the computed/predicted output <span class="math inline">\(\hat{y}\)</span> is:</p>
+<p><span class="math display">\[ P(y|\hat{y}) = \hat{y}^{y} \cdot (1-\hat{y})^{(1-y)}\]</span></p>
+<p>This is simply a Bernoulli distribution (the output is either 1 or 0). But we don’t have only one input nor neuron (which would mean only one weight to optimize), but a whole set, and we want to maximize the probability of observing the “true output” for the entire dataset, not only one neuron. When we talk about Maximum Likelihood, we mean that we want to maximize how close our neural network can model the <strong>entire</strong> dataset (Likelihood of data). Following Probability theory, the probability that <strong>ALL</strong> the observations are correct, is the multiplication of each <strong>single</strong> observation. Problem: if we multiply many numbers smaller than 1, we obtain a very little number, so we apply a logarythm to have a number that is a little more readable by a human. Finally, since optimization algorythms are made to minimize error functions, we add a negative sign in front of the formula:</p>
+<p><span class="math display">\[ Log Loss = - \[ y \cdot \log{\hat{y}} + (1-y) \cdot \log(1-\hat{y}) \]\]</span></p>
+</section>
+<section id="moments" class="level3">
+<h3 class="anchored" data-anchor-id="moments">Moments</h3>
+<p>In this case, moments are simply the mean and the variance of gradients in time:</p>
+<ul>
+<li>The first moment registers the average direction towards which a gradient is moving.</li>
+<li>The second moment registers the “variance” of the gradients, which is how much the gradients change at each step.</li>
+</ul>
+<p>These concepts come from linear algebra. It might be a little bit of an overkill to explain here, but in synthesis in linear algebra, when you want to decompose (find out its components) a complex vector, you project it onto a basis (i.e.&nbsp;usually the axes x, y, z, but you can take anything else as a reference). To understand the components of a vector, in linear algebra you do the <strong>Inner/Scalar product</strong> <span class="math inline">\(\langle U | V \rangle = \sum{U_i \cdot V_i}\)</span> between the vector and the basis (ex: to find out the coordinate <span class="math inline">\(x\)</span> of a vector <span class="math inline">\(v\)</span> you do <span class="math inline">\(v_1x_1 + v_2x_2 + v_3x_3\)</span>, which will give you a single number).</p>
+<p>In Machine Learning data is not certain, our observations follow a certain probability distribution. The moments are the projections (scalar products) of the probabilities distributions on your basis. If you project your observations <span class="math inline">\(x\)</span> and their probabilities <span class="math inline">\(p\)</span> on a linear basis (<span class="math inline">\(x^1\)</span>) you obtain: <span class="math inline">\(\langle X | P \rangle = \sum{x_i \cdot p_i} = \mathbb{E}\[X\]\)</span>. This is both the first moment and the average. If, instead, you project your observations <span class="math inline">\(x\)</span> and their probabilities <span class="math inline">\(p\)</span> on a quadratic basis (<span class="math inline">\(x^2\)</span>) you obtain the variance <span class="math inline">\(\mathbb{E}\[X^2\]\)</span>.</p>
+
+
+</section>
+</section>
+</section>
+
+</main> <!-- /main -->
+<script id="quarto-html-after-body" type="application/javascript">
+  window.document.addEventListener("DOMContentLoaded", function (event) {
+    const icon = "";
+    const anchorJS = new window.AnchorJS();
+    anchorJS.options = {
+      placement: 'right',
+      icon: icon
+    };
+    anchorJS.add('.anchored');
+    const isCodeAnnotation = (el) => {
+      for (const clz of el.classList) {
+        if (clz.startsWith('code-annotation-')) {                     
+          return true;
+        }
+      }
+      return false;
+    }
+    const onCopySuccess = function(e) {
+      // button target
+      const button = e.trigger;
+      // don't keep focus
+      button.blur();
+      // flash "checked"
+      button.classList.add('code-copy-button-checked');
+      var currentTitle = button.getAttribute("title");
+      button.setAttribute("title", "Copied!");
+      let tooltip;
+      if (window.bootstrap) {
+        button.setAttribute("data-bs-toggle", "tooltip");
+        button.setAttribute("data-bs-placement", "left");
+        button.setAttribute("data-bs-title", "Copied!");
+        tooltip = new bootstrap.Tooltip(button, 
+          { trigger: "manual", 
+            customClass: "code-copy-button-tooltip",
+            offset: [0, -8]});
+        tooltip.show();    
+      }
+      setTimeout(function() {
+        if (tooltip) {
+          tooltip.hide();
+          button.removeAttribute("data-bs-title");
+          button.removeAttribute("data-bs-toggle");
+          button.removeAttribute("data-bs-placement");
+        }
+        button.setAttribute("title", currentTitle);
+        button.classList.remove('code-copy-button-checked');
+      }, 1000);
+      // clear code selection
+      e.clearSelection();
+    }
+    const getTextToCopy = function(trigger) {
+      const outerScaffold = trigger.parentElement.cloneNode(true);
+      const codeEl = outerScaffold.querySelector('code');
+      for (const childEl of codeEl.children) {
+        if (isCodeAnnotation(childEl)) {
+          childEl.remove();
+        }
+      }
+      return codeEl.innerText;
+    }
+    const clipboard = new window.ClipboardJS('.code-copy-button:not([data-in-quarto-modal])', {
+      text: getTextToCopy
+    });
+    clipboard.on('success', onCopySuccess);
+    if (window.document.getElementById('quarto-embedded-source-code-modal')) {
+      const clipboardModal = new window.ClipboardJS('.code-copy-button[data-in-quarto-modal]', {
+        text: getTextToCopy,
+        container: window.document.getElementById('quarto-embedded-source-code-modal')
+      });
+      clipboardModal.on('success', onCopySuccess);
+    }
+      var localhostRegex = new RegExp(/^(?:http|https):\/\/localhost\:?[0-9]*\//);
+      var mailtoRegex = new RegExp(/^mailto:/);
+        var filterRegex = new RegExp("https:\/\/flavialeotta\.github\.io\/self-learning\/");
+      var isInternal = (href) => {
+          return filterRegex.test(href) || localhostRegex.test(href) || mailtoRegex.test(href);
+      }
+      // Inspect non-navigation links and adorn them if external
+     var links = window.document.querySelectorAll('a[href]:not(.nav-link):not(.navbar-brand):not(.toc-action):not(.sidebar-link):not(.sidebar-item-toggle):not(.pagination-link):not(.no-external):not([aria-hidden]):not(.dropdown-item):not(.quarto-navigation-tool):not(.about-link)');
+      for (var i=0; i<links.length; i++) {
+        const link = links[i];
+        if (!isInternal(link.href)) {
+          // undo the damage that might have been done by quarto-nav.js in the case of
+          // links that we want to consider external
+          if (link.dataset.originalHref !== undefined) {
+            link.href = link.dataset.originalHref;
+          }
+        }
+      }
+    function tippyHover(el, contentFn, onTriggerFn, onUntriggerFn) {
+      const config = {
+        allowHTML: true,
+        maxWidth: 500,
+        delay: 100,
+        arrow: false,
+        appendTo: function(el) {
+            return el.parentElement;
+        },
+        interactive: true,
+        interactiveBorder: 10,
+        theme: 'quarto',
+        placement: 'bottom-start',
+      };
+      if (contentFn) {
+        config.content = contentFn;
+      }
+      if (onTriggerFn) {
+        config.onTrigger = onTriggerFn;
+      }
+      if (onUntriggerFn) {
+        config.onUntrigger = onUntriggerFn;
+      }
+      window.tippy(el, config); 
+    }
+    const noterefs = window.document.querySelectorAll('a[role="doc-noteref"]');
+    for (var i=0; i<noterefs.length; i++) {
+      const ref = noterefs[i];
+      tippyHover(ref, function() {
+        // use id or data attribute instead here
+        let href = ref.getAttribute('data-footnote-href') || ref.getAttribute('href');
+        try { href = new URL(href).hash; } catch {}
+        const id = href.replace(/^#\/?/, "");
+        const note = window.document.getElementById(id);
+        if (note) {
+          return note.innerHTML;
+        } else {
+          return "";
+        }
+      });
+    }
+    const xrefs = window.document.querySelectorAll('a.quarto-xref');
+    const processXRef = (id, note) => {
+      // Strip column container classes
+      const stripColumnClz = (el) => {
+        el.classList.remove("page-full", "page-columns");
+        if (el.children) {
+          for (const child of el.children) {
+            stripColumnClz(child);
+          }
+        }
+      }
+      stripColumnClz(note)
+      if (id === null || id.startsWith('sec-')) {
+        // Special case sections, only their first couple elements
+        const container = document.createElement("div");
+        if (note.children && note.children.length > 2) {
+          container.appendChild(note.children[0].cloneNode(true));
+          for (let i = 1; i < note.children.length; i++) {
+            const child = note.children[i];
+            if (child.tagName === "P" && child.innerText === "") {
+              continue;
+            } else {
+              container.appendChild(child.cloneNode(true));
+              break;
+            }
+          }
+          if (window.Quarto?.typesetMath) {
+            window.Quarto.typesetMath(container);
+          }
+          return container.innerHTML
+        } else {
+          if (window.Quarto?.typesetMath) {
+            window.Quarto.typesetMath(note);
+          }
+          return note.innerHTML;
+        }
+      } else {
+        // Remove any anchor links if they are present
+        const anchorLink = note.querySelector('a.anchorjs-link');
+        if (anchorLink) {
+          anchorLink.remove();
+        }
+        if (window.Quarto?.typesetMath) {
+          window.Quarto.typesetMath(note);
+        }
+        if (note.classList.contains("callout")) {
+          return note.outerHTML;
+        } else {
+          return note.innerHTML;
+        }
+      }
+    }
+    for (var i=0; i<xrefs.length; i++) {
+      const xref = xrefs[i];
+      tippyHover(xref, undefined, function(instance) {
+        instance.disable();
+        let url = xref.getAttribute('href');
+        let hash = undefined; 
+        if (url.startsWith('#')) {
+          hash = url;
+        } else {
+          try { hash = new URL(url).hash; } catch {}
+        }
+        if (hash) {
+          const id = hash.replace(/^#\/?/, "");
+          const note = window.document.getElementById(id);
+          if (note !== null) {
+            try {
+              const html = processXRef(id, note.cloneNode(true));
+              instance.setContent(html);
+            } finally {
+              instance.enable();
+              instance.show();
+            }
+          } else {
+            // See if we can fetch this
+            fetch(url.split('#')[0])
+            .then(res => res.text())
+            .then(html => {
+              const parser = new DOMParser();
+              const htmlDoc = parser.parseFromString(html, "text/html");
+              const note = htmlDoc.getElementById(id);
+              if (note !== null) {
+                const html = processXRef(id, note);
+                instance.setContent(html);
+              } 
+            }).finally(() => {
+              instance.enable();
+              instance.show();
+            });
+          }
+        } else {
+          // See if we can fetch a full url (with no hash to target)
+          // This is a special case and we should probably do some content thinning / targeting
+          fetch(url)
+          .then(res => res.text())
+          .then(html => {
+            const parser = new DOMParser();
+            const htmlDoc = parser.parseFromString(html, "text/html");
+            const note = htmlDoc.querySelector('main.content');
+            if (note !== null) {
+              // This should only happen for chapter cross references
+              // (since there is no id in the URL)
+              // remove the first header
+              if (note.children.length > 0 && note.children[0].tagName === "HEADER") {
+                note.children[0].remove();
+              }
+              const html = processXRef(null, note);
+              instance.setContent(html);
+            } 
+          }).finally(() => {
+            instance.enable();
+            instance.show();
+          });
+        }
+      }, function(instance) {
+      });
+    }
+        let selectedAnnoteEl;
+        const selectorForAnnotation = ( cell, annotation) => {
+          let cellAttr = 'data-code-cell="' + cell + '"';
+          let lineAttr = 'data-code-annotation="' +  annotation + '"';
+          const selector = 'span[' + cellAttr + '][' + lineAttr + ']';
+          return selector;
+        }
+        const selectCodeLines = (annoteEl) => {
+          const doc = window.document;
+          const targetCell = annoteEl.getAttribute("data-target-cell");
+          const targetAnnotation = annoteEl.getAttribute("data-target-annotation");
+          const annoteSpan = window.document.querySelector(selectorForAnnotation(targetCell, targetAnnotation));
+          const lines = annoteSpan.getAttribute("data-code-lines").split(",");
+          const lineIds = lines.map((line) => {
+            return targetCell + "-" + line;
+          })
+          let top = null;
+          let height = null;
+          let parent = null;
+          if (lineIds.length > 0) {
+              //compute the position of the single el (top and bottom and make a div)
+              const el = window.document.getElementById(lineIds[0]);
+              top = el.offsetTop;
+              height = el.offsetHeight;
+              parent = el.parentElement.parentElement;
+            if (lineIds.length > 1) {
+              const lastEl = window.document.getElementById(lineIds[lineIds.length - 1]);
+              const bottom = lastEl.offsetTop + lastEl.offsetHeight;
+              height = bottom - top;
+            }
+            if (top !== null && height !== null && parent !== null) {
+              // cook up a div (if necessary) and position it 
+              let div = window.document.getElementById("code-annotation-line-highlight");
+              if (div === null) {
+                div = window.document.createElement("div");
+                div.setAttribute("id", "code-annotation-line-highlight");
+                div.style.position = 'absolute';
+                parent.appendChild(div);
+              }
+              div.style.top = top - 2 + "px";
+              div.style.height = height + 4 + "px";
+              div.style.left = 0;
+              let gutterDiv = window.document.getElementById("code-annotation-line-highlight-gutter");
+              if (gutterDiv === null) {
+                gutterDiv = window.document.createElement("div");
+                gutterDiv.setAttribute("id", "code-annotation-line-highlight-gutter");
+                gutterDiv.style.position = 'absolute';
+                const codeCell = window.document.getElementById(targetCell);
+                const gutter = codeCell.querySelector('.code-annotation-gutter');
+                gutter.appendChild(gutterDiv);
+              }
+              gutterDiv.style.top = top - 2 + "px";
+              gutterDiv.style.height = height + 4 + "px";
+            }
+            selectedAnnoteEl = annoteEl;
+          }
+        };
+        const unselectCodeLines = () => {
+          const elementsIds = ["code-annotation-line-highlight", "code-annotation-line-highlight-gutter"];
+          elementsIds.forEach((elId) => {
+            const div = window.document.getElementById(elId);
+            if (div) {
+              div.remove();
+            }
+          });
+          selectedAnnoteEl = undefined;
+        };
+          // Handle positioning of the toggle
+      window.addEventListener(
+        "resize",
+        throttle(() => {
+          elRect = undefined;
+          if (selectedAnnoteEl) {
+            selectCodeLines(selectedAnnoteEl);
+          }
+        }, 10)
+      );
+      function throttle(fn, ms) {
+      let throttle = false;
+      let timer;
+        return (...args) => {
+          if(!throttle) { // first call gets through
+              fn.apply(this, args);
+              throttle = true;
+          } else { // all the others get throttled
+              if(timer) clearTimeout(timer); // cancel #2
+              timer = setTimeout(() => {
+                fn.apply(this, args);
+                timer = throttle = false;
+              }, ms);
+          }
+        };
+      }
+        // Attach click handler to the DT
+        const annoteDls = window.document.querySelectorAll('dt[data-target-cell]');
+        for (const annoteDlNode of annoteDls) {
+          annoteDlNode.addEventListener('click', (event) => {
+            const clickedEl = event.target;
+            if (clickedEl !== selectedAnnoteEl) {
+              unselectCodeLines();
+              const activeEl = window.document.querySelector('dt[data-target-cell].code-annotation-active');
+              if (activeEl) {
+                activeEl.classList.remove('code-annotation-active');
+              }
+              selectCodeLines(clickedEl);
+              clickedEl.classList.add('code-annotation-active');
+            } else {
+              // Unselect the line
+              unselectCodeLines();
+              clickedEl.classList.remove('code-annotation-active');
+            }
+          });
+        }
+    const findCites = (el) => {
+      const parentEl = el.parentElement;
+      if (parentEl) {
+        const cites = parentEl.dataset.cites;
+        if (cites) {
+          return {
+            el,
+            cites: cites.split(' ')
+          };
+        } else {
+          return findCites(el.parentElement)
+        }
+      } else {
+        return undefined;
+      }
+    };
+    var bibliorefs = window.document.querySelectorAll('a[role="doc-biblioref"]');
+    for (var i=0; i<bibliorefs.length; i++) {
+      const ref = bibliorefs[i];
+      const citeInfo = findCites(ref);
+      if (citeInfo) {
+        tippyHover(citeInfo.el, function() {
+          var popup = window.document.createElement('div');
+          citeInfo.cites.forEach(function(cite) {
+            var citeDiv = window.document.createElement('div');
+            citeDiv.classList.add('hanging-indent');
+            citeDiv.classList.add('csl-entry');
+            var biblioDiv = window.document.getElementById('ref-' + cite);
+            if (biblioDiv) {
+              citeDiv.innerHTML = biblioDiv.innerHTML;
+            }
+            popup.appendChild(citeDiv);
+          });
+          return popup.innerHTML;
+        });
+      }
+    }
+  });
+  </script>
+</div> <!-- /content -->
+
+
+
+
+</body></html>

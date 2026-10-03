@@ -1,5 +1,0 @@
----
-title: "Welcome"
----
-
-Welcome to my public technical notes and project write-ups!
