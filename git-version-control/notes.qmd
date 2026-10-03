@@ -2,9 +2,9 @@
 engine: markdown
 ---
 
-# Version control with Git
+# [Version control with Git](https://gitlab.sib.swiss/rengler/git_course_public/-/blob/main/README.md)
 
-##  Day 1: first steps with Git
+##  [Day 1: first steps with Git](https://gitlab.sib.swiss/rengler/git_course_public/-/raw/main/slides_git_first_steps.pdf?ref_type=heads)
 
 ### Brief introduction to version control systems and Git.
 ### Git basics: creating a Git repository and making commits.
