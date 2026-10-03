@@ -1,5 +1,8 @@
 project:
   type: website
+  
+execute:
+  enabled: false
 
 website:
   title: "Bioinformatics self-learning journey"
