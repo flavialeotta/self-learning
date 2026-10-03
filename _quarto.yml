@@ -1,5 +1,8 @@
 project:
   type: website
+  
+execute:
+  freeze: auto
 
 execute:
   freeze: auto
@@ -21,3 +24,10 @@ format:
   html:
     theme: cosmo
     toc: true
+
+profile:
+  default:
+    render:
+      - "*.qmd"
+      - "*.ipynb"
+      - "*.md"
