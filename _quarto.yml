@@ -21,10 +21,3 @@ format:
   html:
     theme: cosmo
     toc: true
-
-profile:
-  default:
-    render:
-      - "*.qmd"
-      - "*.ipynb"
-      - "*.md"
