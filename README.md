@@ -1,3 +1,7 @@
+---
+engine: markdown
+---
+
 # Collection of self-learning materials for Bioinformatics and Scientific Software development
 A repository dedicated to learning new skills through publicly available material. This repository is not only intended for me to organize my own self-learning but also to provide a collection of free, publicly available material online that can be useful to other early-career Bioinformatics Workflow scientists.
 

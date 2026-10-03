@@ -1,0 +1,8 @@
+---
+title: "Rust Notes"
+---
+
+Welcome to my Rust self-study notes.
+
+- [Chapters 1-3 Summary](ch1-3-summary.md)
+- [Cheatsheet](cheatsheet.md)

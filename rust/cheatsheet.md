@@ -1,3 +1,7 @@
+---
+engine: markdown
+---
+
 # Cheatsheet for Rust
 
 ## Starting a new project

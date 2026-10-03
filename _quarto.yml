@@ -1,6 +1,9 @@
 project:
   type: website
 
+execute:
+  freeze: auto
+
 website:
   title: "Bioinformatics self-learning journey"
   navbar:
@@ -11,7 +14,7 @@ website:
         text: Rust
       - href: deep-learning-for-life-sciences/
         text: Deep Learning
-      - href git-version-control/
+      - href: git-version-control/
         text: Git version control
 
 format:

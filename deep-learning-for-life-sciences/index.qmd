@@ -1,0 +1,8 @@
+---
+title: "Deep Learning Notes"
+---
+
+Welcome to my Deep Learning notes and notebooks.
+
+- [Lesson 1: introduction](1-introduction-to-DL.md)
+   - [Lab 1:](labs/Lab1DeepLearning.ipynb)

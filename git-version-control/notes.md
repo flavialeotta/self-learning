@@ -1,3 +1,7 @@
+---
+engine: markdown
+---
+
 # Version control with Git
 
 ##  Day 1: first steps with Git

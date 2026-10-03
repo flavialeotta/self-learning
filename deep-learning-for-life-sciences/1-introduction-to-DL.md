@@ -1,3 +1,7 @@
+---
+engine: markdown
+---
+
 # Lecture 1: Introduction to Deep Learning
 
 Lecturer: Bartek Wilczyński
