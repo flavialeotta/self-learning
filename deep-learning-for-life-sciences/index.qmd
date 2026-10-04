@@ -4,5 +4,5 @@ title: "Deep Learning Notes"
 
 Welcome to my Deep Learning notes and notebooks.
 
-- [Lesson 1: introduction](1-introduction-to-DL.md)
+- [Lesson 1: introduction](1-introduction-to-DL.qmd)
    - [Lab 1:](labs/Lab1DeepLearning.ipynb)

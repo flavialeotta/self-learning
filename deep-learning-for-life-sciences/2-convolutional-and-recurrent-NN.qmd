@@ -1,0 +1,25 @@
+---
+engine: markdown
+---
+
+# Lecture 2: Convolutional and Recurrent neural networks
+
+Lecturer: Marco Frasca
+
+The lecture starts with an example that will guide the rest of the class: how do we predict if, in an audio file, the world "Welcome" is present or not? The problem with using normal Neural Networks is that in NN features are independent, while in audio files the features are correlated to the temporal dimension. This brings up the **Shift Variance Problem**: a normal NN cannot handle shifts in the input data, even if the location of a pattern should not important, only its present. The solution is to use Convolutional Neural Networks (CNNs), which are shift invariant.
+
+The idea is to divide the input in overlapping windows, apply the same model to each window and then do what we call **convolution**. A **Convolution** is the composition ($Y(n)$) of 2 real-valued functions $x$ and $h$.
+
+$$ Y(n) = (x * h)(n) = \sum_{a \in A} x(a)h(n-a) $$
+
+Where:
+
+- $x(a)$ is the input function (in our case, the original audio file). We take a little portion of the input function and apply a filter to it;
+- $h$ is the *kernel function* (in our case, a sliding window);
+- $h(n-a)$ the filter function, shifted by $n$;
+- $a$ the sliding index;
+- $n$ the current time position of the output $Y(n)$.
+- 
+$Y(n)$ will be a single output: big if the pattern is present at position $n$, small if it is not. The step used to slide the window is called **stride**: a stride can have different directions, to move in multiple dimensions. Often getting information from the borders can be quite tricky because the window is not fully contained in the input. To solve this problem, we can use **0-padding**: we add zeros to the borders of the input.
+
+The output is also known as **feature map**. The feature map is a 1D array, where each element is the result of the convolution at a specific position. The feature map can be used as input for another convolutional layer, to extract more complex features.

@@ -1,0 +1,215 @@
+---
+engine: markdown
+---
+
+# [Version control with Git](https://gitlab.sib.swiss/rengler/git_course_public/-/blob/main/README.md)
+This course covers Git's usage through the command line (no Web version nor Visual Studio Code).
+
+##  [Day 1: first steps with Git](https://gitlab.sib.swiss/rengler/git_course_public/-/raw/main/slides_git_first_steps.pdf?ref_type=heads)
+Lecturers: Robin Engler, Vassilios Ioannidis
+
+#### Brief introduction to version control systems and Git.
+
+The objectives of Git are:
+
+- having a distributed development (allow parallel, asynchronous work);
+- maintaining integrity and trust (identify changes in a repository);
+- enforcing documentation (each commit MUST have a message);
+- making it easy to branch and merge repositories (or line of development);
+- being free and open source.
+
+### Git basics: creating a Git repository and making commits.
+
+The basic principle of Git is to take snapshots at user defined time points (not automatic). It keeps track of the order of snapshots and associates metadata to them: a snapshot with metadata is called a *commit*, and it has a unique ID, called a *hash* (40 characters long). 
+
+> **SHA-1 hash**
+> SHA-1 stands for Secure Hashing Algorithm 1. This algorithm is able to turn any binary input into a unique 40 character hexadecimal string.
+
+Commits are stored in a *repository*: the actual Git repository is the folder called <code>.git</code>, which containts the *repository history*, metadata, configuration... but colloquially, the term repository refers to the entire directory under Git control. A *working tree* is the current content of a directory that is being tracked by Git: a *branch* is a line of development.
+
+> **Local vs remote repository**
+> If you only create a Git repository on your computer, everything is local. If you want to collaborate with others, or have a remote backup, you need to create a remote repository on a server (e.g. GitHub, GitLab, Bitbucket) and push your local repository to it. Backups are *not* automatically created.
+
+| Types of Git cases and their advantages |
+| ------------------ | ------------------ | ------------------ |
+| Single repo, single branch | Single repo, multiple branches | Multiple repos |
+| Keep a documented log of your own work, so you can go back and compare earlier versions. Acts as a backup and you can distribute your code | Same advantages as single branch, but allows you to work on multiple features in parallel (i.e. published code and work in progress of new features). | Same advantages as the previous two, and allows to collaborate with others. |
+
+> **Size limits**
+> Git is not designed to handle large files, because for each edit the entire file needs to be stored (not only the edits!). If you want to version large files, you need to use Git LFS (Large File Storage): locally will create a reference to a large file, while the actual file will be saved in the *object store*. Not all hosting services support Git LFS. GitHub has a limit of 100 MB per file, and GitLab has a limit of 10 GB per repository.
+> Additionally, for older commits, Git decreases disk space usage by storing only the differences between files, then compresses files in a single "pack file" (.pack extension) with an addociated index (.idx extension). This cannot be done for large files, which is why they are not supported by Git.
+
+#### Git configuration
+
+The minimum configuration is to set your name and email address, which will be associated with your commits. The global flag means that the configuration will be applied to all repositories on your computer. You can also set a default editor for Git commands that require one (e.g. commit messages).
+
+```
+git config --global user.name <user name>
+git config --global user.email <email>
+
+# Other configuration options:
+git config --global core.editor <editor cmd. Ex: nano> 
+
+# Access the config values:
+git config --get user.name
+
+# Show all configuration values:
+git config --list --show-origin --show-scope
+
+# Define a shortcut for a command:
+git config --global alias.<new name/shortcut for a command> "command to associate with the shortcut"
+```
+
+A potential problem is the line-end character: Windows uses CRLF, while Linux and Mac use LF (\\n). Git can automatically convert line endings to the correct format for the operating system. You can set this behavior with .
+
+```
+# Windows, convert LF to CRLF on checkout, and CRLF to LF on commit
+git config core.autocrlf true 
+
+# Linux/Mac, convert CRLF to LF on commit, but do not modify line endings on checkout
+git config core.autocrlf input
+```
+
+#### Creating a new repo
+
+You can either turn a local directory into a Git repo (<code>git init</code>, if you add <code>--bare</code> you do not create a working tree) or clone an existing repo (<code>git clone https://github.com/....<repo_url></code>). To assess the current status of a repo:
+
+```
+git status     # Branch name, staged files (in green), unstaged files (red if they are modified), etc...
+git log        # Commit history
+git ls-files   # List files tracked by Git (you can have both tracked and untracked in the same repo)
+```
+
+### Git concepts: commits and the Git index.
+
+Creating a commit is a 2-step process:
+
+1. Stage the changes you want to include in the commit (add them to the *Git index*, also known as the *staging area*. It will create a copy in the .git folder) with <code>git add</code>. 
+   - Adding <code>--edit</code> or <code>--patch</code> allows you to select which changes to stage;
+   - <code>git add -u // --update</code> stages all already tracked files but ignores the untracked ones;
+   - If you change your mind, you can unstage changes with <code>git rm --cached </code>;
+2. Commit the staged changes with <code>git commit -m "commit message..."</code>;
+   - You can stage and commit in one step with <code>git commit --all -m "commit message..."</code>, but it will only work for already tracked files.
+
+A thing *I* (literally me, Flavia) have to work on is that not all current changes in the working tree need to be part of the next commit. I usually commit everything (with <code>git add .</code> if I didn't delete anything, <code>git add -A // --all</code> if I did) to be able to work on the same thing from home and from University, but I should learn to commit only the changes that are related to a specific task. The course suggests that I should work on a temporary/feature branch and then later on merge it into the main one.
+
+> **Files statuses**
+> - Tracked: file under version control, in the Git index, will be part of the next commit.
+>    - Unmodified: tracked, not changed since the last commit.
+>    - Modified: tracked files that have been changed.
+>       - Staged: in the Git index, will be part of the next commit. To remove them from the index, use <code>git restore --staged < file > </code>. To remove all files from the index at once, use <code>git reset HEAD</code>. Careful: you can remove files from the index using <code>git rm --cached < file ></code> but if you accidentally forget the flag, you will remove the file from the work tree as well;
+>          - If you do not add the <code>--staged</code> flag, it resets the file in the work tree to the version in the Git index. This is useful if you want to discard your own edits. If you want to retrieve the content of a file from an even earlier commit you can do <code>git restore -s/--source < commit> < file ></code> or <code>git checkout < commit > < file ></code>, but these commands will overwrite existing versions of the file in your working tree. Restore updates the file *only* in the working tree while checkout updates both the working tree and the index;
+>       - Unstaged: tracked, but not in the Git index, will not be part of the next commit.
+>       - To show the differences between two states of a  git repo you can use:
+>          ```
+>          git diff <file>
+>          git diff --cached
+>          git diff --name-only # show only the file names, not changes.
+>          git show # with no argument shows the latest commit on the current branch (HEAD)
+>          ```
+> - Untracked: files in the folder but not under version control and not in the Git index, will not be part of the next commit. To stop them showing up in the <code>git status</code> output, you can add them to the <code>.gitignore</code> file (for files that should be ignored by every copy of the repository) or in the <code>.git / info / exclude</code> file (for files that should be ignored only in the local copy).
+> - Ignored: not in the Git index, will not be part of the next commit, and will not be shown in <code>git status</code>.
+
+To display the commit history, you can use:
+
+```
+git log
+git log --oneline                           # compact view
+git log --all --decorate --oneline --graph  # compact view of all the branches
+```
+
+Commits point to their direct parent, forming a DAG (Directed Acylic Graph) where no commit can be modified without altering all of its descendants. 
+
+### Git branches: introduction to branched workflows and collaborative workflow examples.
+
+Branching means to diverge from the main line of development:
+
+- they isolate new changes from stable code;
+- they isolate changes from different people;
+- on online repos, branches can be protected so only selected people can add commits to it.
+
+To create and move between branches, you can use:
+
+```
+git branch < name >               # Create a new branch. Without name it lists local branches. Adding the flag -a it lists also the remote ones.
+git switch < name >               # Switch to a branch
+git switch -c < name >            # Create and switch to the new branch
+git branch < name > < reference > # Creates a branch somewhere else than HEAD
+```
+
+> **The HEAD pointer**: HEAD is a pointer to the latest commit on the current branch. New commits are added under the current HEAD. When you switch branch, HEAD moves too. You can also move HEAD to a specific commit, which is called a *detached HEAD state* (you are not on any branch). In this state, you can make changes and create commits, but they will be lost if you switch to another branch. To save them, you need to create a new branch and switch to it.
+
+What happes when switching branches? The untracked files are unaffected by branch switches, while the rest of the content is updated to reflect the state of the commit of the active branch. If you have uncommitted changes the situation is a little bit more complicated: if changes do not conflict, then they are "carried over", but if they do Git will stop the switching.
+
+### Branch management: merge, rebase and cherry-pick.
+
+Merging (<code>git merge < branch name ></code>) means to incorporate changes from the specified branch into the currently active branch. There are two types of merging:
+
+- **Fast-forward merge**: this is possible if the branches have not diverged. If keeping an exact record of the history some people like to add a merge commit even if a fast-forward merge is possible, by adding <code>--no-ff</code>;
+- **3-way merge**: it creates an additional merge commit where conflicts may occur and need to be manually resolved. This preserves history perfectly but it can lead to messy histories. A merge can be aborted with <code> git merge --abort</code>.
+- Branches can be moved/re-rooted on a different base commit by moving to the branch and then using <code>git rebase < name of the branch to rebase on ></code>. This command can generate conflicts which need to be resolved like during merges. This is kind of an additional type, which we can call **rebase + fast forward merge**: the history is cleaner but you also lose some branching history. 
+
+Choosing a type of merging comes from personal preference of readability and history-preservation trafeoff: honestly, they showed us an example of a messy history and I kinda prefer the cleaner look. Branches that are not used anymore can (and should) be deleted. To do so, first checkout of them and delete them:
+
+```
+git branch -d < branch >    # Safe option, only fully merged branches
+git branch -D < branch >    # Not safe
+```
+
+> **Branch management strategies**: you can decide to manage your project as you may see fit. The two most used strategies are:
+>
+> - **GitFlow**: the idea is to always have a *dev* branch on which new features are added until ready for a release;
+> - **Trunk-based development**: there is not a *dev* branch but all features are merged directly to *main* when they are finished. Better when code is distributed via formal releases.
+
+If you are not sure about merging a whole branch, you can cherry pick (<code>git cherry-pick < commit ></code>) which means to merge a single commit into the current branch, and not the whole branch itself. If, instead, you want to discard all edits you've done you can checkout an entire repo to an earlier commit (<code>git checkout < commit ></code>) which will restore the working tree, the index and will move the HEAD pointer to that commit. After the checkout you will enter a detached HEAD state, so you should go back to a regular branch.
+
+### Working with remotes: collaborating with Git and GitHub.
+
+A remote is a copy of Git repository that is stored on a server (GitHub or GitLab are common choices), which allows to backup the work, collaborate and distribute the work. A remote can be added using <code>git remote add < remote name > < remote url ></code> and the URL can be changed with <code>git remote set-url</code>. 
+
+> **HTTPS vs SSH**: HTTPS and SSH are two different network protocols that machines use to communicate. If you clone via HTTPS you will need to provide a personal access token (PAT) as authentication credentials: if the repo is public the credentials are needed to push but not pull. If you clone via SSH you will need to add a public SSH key to the GitHub account. To create a PAT on Github, you go in your user profile, click on Settings and then Developer settings. There you will find Personal access tokens > Tokens (classic) > Generate new token (classic).
+
+It is important, when working collaboratively, to check for edits on the branch by doing <code>git fetch</code>: if the history diverges, we can choose to either to <code>git pull --no-rebase</code> to merge them, or <code>git pull --rebase</code>.
+
+> Note: <code>git pull</code> is just a shortcut for <code>git fetch</code> followed by <code>git merge --ff-only</code>.
+
+Earlier we talked about branches getting deleted if not in use anymore: when working remotely the deletion of a branch must be pushed! After doing <code>git branch -d</code> then you must run <code>git push origin --delete</code>. Other people having a local copy of the branch will not have it deleted with a normal <code>git fetch</code>: deleting while synchronicing is only possible by doing <code>git fetch --prune</code>.
+
+| Summary of commands (no commands) |
+| -------- | -------- |
+| Command  | What it does |
+| -------- | -------- |
+| <code>git clone</code> | Create a local copy from an existing online repo |
+| <code>git remote add origin</code> | Add a new remote to an existing local repo |
+| <code>git push</code> | Push new commits on current branch to remote |
+| <code>git push -u origin</code> | Additionally sets the upstream branch. Needed when pushing a branch for the first time, but not needed if the local branch was created from a remote branch |
+| <code>git push --force</code> | Overwrites the branch on the remote with the local version (dangerous) |
+| <code>git fetch</code> | Download all updates, even for non active branches |
+| <code>git pull</code> | Download all updates and merge changes |
+| <code>git pull --no-rebase</code> | Fetch + 3-way merge active branch |
+| <code>git pull --rebase</code> | Fetch + rebase active branch |
+| <code>git pull --ff-only</code> | Fetch + fast-forward merge |
+| <code>git remote -v</code> | Display the remote(s) associated to a repo |
+| <code>git branch -vva</code> | List branches of repo and their associated upstream (if any) |
+
+When working collaboratively you will have to get accostumed to **Pull Request** (GitHub)/ **Merge Request** (GitLab), which are a way to perform a merge operation on GitHub/GitLab instead of locally. This happens because remote, collaborative branches are usually protected and it gives the opportunity to repository owners to review changes before making them. To open a Pull request on GitHub:
+
+1. First go on the project's page on GitHub and go on the Pull requests tab;
+2. Click on "New pull request" and select the branches to merge: if there are conflicts, you might need to rebase your branche and resolve them;
+3. If everything is in order, click on "Create pull request" (optionally, enter a message for the peope that will review your pull request!).
+
+I will not write here about GitLab because I personally like GitHub more.
+
+## Day 2: Git advanced topics
+
+### Rewriting history: interactive rebase, git reset and commit amending.
+### The detached HEAD state explained.
+### The Git stash.
+### Git tags: label important commits.
+### GitHub: creating new projects, adding users and collaborating with them.
+
+## Optional modules
+
+### GitHub Actions and GitLab CI/CD: writing automated pipelines.
+### Git submodules: embed a Git repository as a subdirectory of another Git repo.
+### Git LFS: versioning large files with Git.

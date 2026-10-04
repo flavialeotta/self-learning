@@ -3,3 +3,6 @@ title: "Git Version Control"
 ---
 
 Welcome to my Git workflow guides and notes.
+
+- [Day 1: first steps with Git](./day1.qmd)
+- [Day 2: Git advanced topics](./day2.qmd)
