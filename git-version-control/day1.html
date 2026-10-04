@@ -1,0 +1,844 @@
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml" lang="en" xml:lang="en"><head>
+
+<meta charset="utf-8">
+<meta name="generator" content="quarto-1.10.18">
+
+<meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes">
+
+
+<title>day1 – Bioinformatics self-learning journey</title>
+<style>
+/* Default styles provided by pandoc.
+** See https://pandoc.org/MANUAL.html#variables-for-html for config info.
+*/
+span.smallcaps{font-variant: small-caps;}
+div.columns{display: flex; gap: 1.5em;}
+div.column{flex: auto;}
+@media screen {
+div.columns{gap: min(4vw, 1.5em);}
+div.column{overflow-x: auto;}
+}
+div.hanging-indent{margin-left: 1.5em; text-indent: -1.5em;}
+ul.task-list{list-style: none;}
+ul.task-list li input[type="checkbox"] {
+  width: 0.8em;
+  margin: 0 0.8em 0.2em -1em; /* quarto-specific, see https://github.com/quarto-dev/quarto-cli/issues/4556 */ 
+  vertical-align: middle;
+}
+</style>
+
+
+<script src="../site_libs/quarto-nav/quarto-nav.js"></script>
+<script src="../site_libs/quarto-nav/headroom.min.js"></script>
+<script src="../site_libs/clipboard/clipboard.min.js"></script>
+<script src="../site_libs/quarto-search/autocomplete.umd.js"></script>
+<script src="../site_libs/quarto-search/fuse.min.js"></script>
+<script src="../site_libs/quarto-search/quarto-search.js"></script>
+<meta name="quarto:offset" content="../">
+<script src="../site_libs/quarto-html/quarto.js" type="module"></script>
+<script src="../site_libs/quarto-html/tabsets/tabsets.js" type="module"></script>
+<script src="../site_libs/quarto-html/popper.min.js"></script>
+<script src="../site_libs/quarto-html/tippy.umd.min.js"></script>
+<script src="../site_libs/quarto-html/anchor.min.js"></script>
+<link href="../site_libs/quarto-html/tippy.css" rel="stylesheet">
+<link href="../site_libs/quarto-html/quarto-syntax-highlighting-64a204ab8560d761af7679ceaba22944.css" rel="stylesheet" id="quarto-text-highlighting-styles">
+<script src="../site_libs/bootstrap/bootstrap.min.js"></script>
+<link href="../site_libs/bootstrap/bootstrap-icons.css" rel="stylesheet">
+<link href="../site_libs/bootstrap/bootstrap-55617497126496852ff9f5a59253c640.min.css" rel="stylesheet" append-hash="true" id="quarto-bootstrap" data-mode="light">
+<script id="quarto-search-options" type="application/json">{
+  "location": "navbar",
+  "copy-button": false,
+  "collapse-after": 3,
+  "panel-placement": "end",
+  "type": "overlay",
+  "limit": 50,
+  "keyboard-shortcut": [
+    "f",
+    "/",
+    "s"
+  ],
+  "show-item-context": false,
+  "language": {
+    "search-no-results-text": "No results",
+    "search-matching-documents-text": "matching documents",
+    "search-copy-link-title": "Copy link to search",
+    "search-hide-matches-text": "Hide additional matches",
+    "search-more-match-text": "more match in this document",
+    "search-more-matches-text": "more matches in this document",
+    "search-clear-button-title": "Clear",
+    "search-text-placeholder": "",
+    "search-detached-cancel-button-title": "Cancel",
+    "search-submit-button-title": "Submit",
+    "search-label": "Search"
+  }
+}</script>
+
+
+</head>
+
+<body class="nav-fixed quarto-light">
+
+<div id="quarto-search-results"></div>
+  <header id="quarto-header" class="headroom fixed-top">
+    <nav class="navbar navbar-expand-lg " data-bs-theme="dark">
+      <div class="navbar-container container-fluid">
+      <div class="navbar-brand-container mx-auto">
+    <a class="navbar-brand" href="../index.html">
+    <span class="navbar-title">Bioinformatics self-learning journey</span>
+    </a>
+  </div>
+            <div id="quarto-search" class="" title="Search"></div>
+          <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarCollapse" aria-controls="navbarCollapse" role="menu" aria-expanded="false" aria-label="Toggle navigation" onclick="if (window.quartoToggleHeadroom) { window.quartoToggleHeadroom(); }">
+  <span class="navbar-toggler-icon"></span>
+</button>
+          <div class="collapse navbar-collapse" id="navbarCollapse">
+            <ul class="navbar-nav navbar-nav-scroll me-auto">
+  <li class="nav-item">
+    <a class="nav-link" href="../index.html"> 
+<span class="menu-text">Home</span></a>
+  </li>  
+  <li class="nav-item">
+    <a class="nav-link" href="../rust/"> 
+<span class="menu-text">Rust</span></a>
+  </li>  
+  <li class="nav-item">
+    <a class="nav-link" href="../deep-learning-for-life-sciences/"> 
+<span class="menu-text">Deep Learning</span></a>
+  </li>  
+  <li class="nav-item">
+    <a class="nav-link" href="../git-version-control/"> 
+<span class="menu-text">Git version control</span></a>
+  </li>  
+</ul>
+          </div> <!-- /navcollapse -->
+            <div class="quarto-navbar-tools">
+</div>
+      </div> <!-- /container-fluid -->
+    </nav>
+</header>
+<!-- content -->
+<div id="quarto-content" class="quarto-container page-columns page-rows-contents page-layout-article page-navbar">
+<!-- sidebar -->
+<!-- margin-sidebar -->
+    <div id="quarto-margin-sidebar" class="sidebar margin-sidebar">
+        <nav id="TOC" role="doc-toc" class="toc-active">
+    <h2 id="toc-title">On this page</h2>
+   
+  <ul>
+  <li><a href="#version-control-with-git" id="toc-version-control-with-git" class="nav-link active" data-scroll-target="#version-control-with-git">Version control with Git</a>
+  <ul class="collapse">
+  <li><a href="#day-1-first-steps-with-git" id="toc-day-1-first-steps-with-git" class="nav-link" data-scroll-target="#day-1-first-steps-with-git">Day 1: first steps with Git</a>
+  <ul class="collapse">
+  <li><a href="#git-basics-creating-a-git-repository-and-making-commits." id="toc-git-basics-creating-a-git-repository-and-making-commits." class="nav-link" data-scroll-target="#git-basics-creating-a-git-repository-and-making-commits.">Git basics: creating a Git repository and making commits.</a></li>
+  <li><a href="#git-concepts-commits-and-the-git-index." id="toc-git-concepts-commits-and-the-git-index." class="nav-link" data-scroll-target="#git-concepts-commits-and-the-git-index.">Git concepts: commits and the Git index.</a></li>
+  <li><a href="#git-branches-introduction-to-branched-workflows-and-collaborative-workflow-examples." id="toc-git-branches-introduction-to-branched-workflows-and-collaborative-workflow-examples." class="nav-link" data-scroll-target="#git-branches-introduction-to-branched-workflows-and-collaborative-workflow-examples.">Git branches: introduction to branched workflows and collaborative workflow examples.</a></li>
+  <li><a href="#branch-management-merge-rebase-and-cherry-pick." id="toc-branch-management-merge-rebase-and-cherry-pick." class="nav-link" data-scroll-target="#branch-management-merge-rebase-and-cherry-pick.">Branch management: merge, rebase and cherry-pick.</a></li>
+  <li><a href="#working-with-remotes-collaborating-with-git-and-github." id="toc-working-with-remotes-collaborating-with-git-and-github." class="nav-link" data-scroll-target="#working-with-remotes-collaborating-with-git-and-github.">Working with remotes: collaborating with Git and GitHub.</a></li>
+  </ul></li>
+  <li><a href="#day-2-git-advanced-topics" id="toc-day-2-git-advanced-topics" class="nav-link" data-scroll-target="#day-2-git-advanced-topics">Day 2: Git advanced topics</a>
+  <ul class="collapse">
+  <li><a href="#rewriting-history-interactive-rebase-git-reset-and-commit-amending." id="toc-rewriting-history-interactive-rebase-git-reset-and-commit-amending." class="nav-link" data-scroll-target="#rewriting-history-interactive-rebase-git-reset-and-commit-amending.">Rewriting history: interactive rebase, git reset and commit amending.</a></li>
+  <li><a href="#the-detached-head-state-explained." id="toc-the-detached-head-state-explained." class="nav-link" data-scroll-target="#the-detached-head-state-explained.">The detached HEAD state explained.</a></li>
+  <li><a href="#the-git-stash." id="toc-the-git-stash." class="nav-link" data-scroll-target="#the-git-stash.">The Git stash.</a></li>
+  <li><a href="#git-tags-label-important-commits." id="toc-git-tags-label-important-commits." class="nav-link" data-scroll-target="#git-tags-label-important-commits.">Git tags: label important commits.</a></li>
+  <li><a href="#github-creating-new-projects-adding-users-and-collaborating-with-them." id="toc-github-creating-new-projects-adding-users-and-collaborating-with-them." class="nav-link" data-scroll-target="#github-creating-new-projects-adding-users-and-collaborating-with-them.">GitHub: creating new projects, adding users and collaborating with them.</a></li>
+  </ul></li>
+  <li><a href="#optional-modules" id="toc-optional-modules" class="nav-link" data-scroll-target="#optional-modules">Optional modules</a>
+  <ul class="collapse">
+  <li><a href="#github-actions-and-gitlab-cicd-writing-automated-pipelines." id="toc-github-actions-and-gitlab-cicd-writing-automated-pipelines." class="nav-link" data-scroll-target="#github-actions-and-gitlab-cicd-writing-automated-pipelines.">GitHub Actions and GitLab CI/CD: writing automated pipelines.</a></li>
+  <li><a href="#git-submodules-embed-a-git-repository-as-a-subdirectory-of-another-git-repo." id="toc-git-submodules-embed-a-git-repository-as-a-subdirectory-of-another-git-repo." class="nav-link" data-scroll-target="#git-submodules-embed-a-git-repository-as-a-subdirectory-of-another-git-repo.">Git submodules: embed a Git repository as a subdirectory of another Git repo.</a></li>
+  <li><a href="#git-lfs-versioning-large-files-with-git." id="toc-git-lfs-versioning-large-files-with-git." class="nav-link" data-scroll-target="#git-lfs-versioning-large-files-with-git.">Git LFS: versioning large files with Git.</a></li>
+  </ul></li>
+  </ul></li>
+  </ul>
+</nav>
+    </div>
+<!-- main -->
+<main class="content" id="quarto-document-content"><header id="title-block-header" class="quarto-title-block"></header>
+
+
+
+
+<section id="version-control-with-git" class="level1">
+<h1><a href="https://gitlab.sib.swiss/rengler/git_course_public/-/blob/main/README.md">Version control with Git</a></h1>
+<p>This course covers Git’s usage through the command line (no Web version nor Visual Studio Code).</p>
+<section id="day-1-first-steps-with-git" class="level2">
+<h2 class="anchored" data-anchor-id="day-1-first-steps-with-git"><a href="https://gitlab.sib.swiss/rengler/git_course_public/-/raw/main/slides_git_first_steps.pdf?ref_type=heads">Day 1: first steps with Git</a></h2>
+<p>Lecturers: Robin Engler, Vassilios Ioannidis</p>
+<section id="brief-introduction-to-version-control-systems-and-git." class="level4">
+<h4 class="anchored" data-anchor-id="brief-introduction-to-version-control-systems-and-git.">Brief introduction to version control systems and Git.</h4>
+<p>The objectives of Git are:</p>
+<ul>
+<li>having a distributed development (allow parallel, asynchronous work);</li>
+<li>maintaining integrity and trust (identify changes in a repository);</li>
+<li>enforcing documentation (each commit MUST have a message);</li>
+<li>making it easy to branch and merge repositories (or line of development);</li>
+<li>being free and open source.</li>
+</ul>
+</section>
+<section id="git-basics-creating-a-git-repository-and-making-commits." class="level3">
+<h3 class="anchored" data-anchor-id="git-basics-creating-a-git-repository-and-making-commits.">Git basics: creating a Git repository and making commits.</h3>
+<p>The basic principle of Git is to take snapshots at user defined time points (not automatic). It keeps track of the order of snapshots and associates metadata to them: a snapshot with metadata is called a <em>commit</em>, and it has a unique ID, called a <em>hash</em> (40 characters long).</p>
+<blockquote class="blockquote">
+<p><strong>SHA-1 hash</strong> SHA-1 stands for Secure Hashing Algorithm 1. This algorithm is able to turn any binary input into a unique 40 character hexadecimal string.</p>
+</blockquote>
+<p>Commits are stored in a <em>repository</em>: the actual Git repository is the folder called <code>.git</code>, which containts the <em>repository history</em>, metadata, configuration… but colloquially, the term repository refers to the entire directory under Git control. A <em>working tree</em> is the current content of a directory that is being tracked by Git: a <em>branch</em> is a line of development.</p>
+<blockquote class="blockquote">
+<p><strong>Local vs remote repository</strong> If you only create a Git repository on your computer, everything is local. If you want to collaborate with others, or have a remote backup, you need to create a remote repository on a server (e.g.&nbsp;GitHub, GitLab, Bitbucket) and push your local repository to it. Backups are <em>not</em> automatically created.</p>
+</blockquote>
+<table class="caption-top table">
+<colgroup>
+<col style="width: 33%">
+<col style="width: 33%">
+<col style="width: 33%">
+</colgroup>
+<thead>
+<tr class="header">
+<th>Types of Git cases and their advantages</th>
+<th></th>
+<th></th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td>Single repo, single branch</td>
+<td>Single repo, multiple branches</td>
+<td>Multiple repos</td>
+</tr>
+<tr class="even">
+<td>Keep a documented log of your own work, so you can go back and compare earlier versions. Acts as a backup and you can distribute your code</td>
+<td>Same advantages as single branch, but allows you to work on multiple features in parallel (i.e.&nbsp;published code and work in progress of new features).</td>
+<td>Same advantages as the previous two, and allows to collaborate with others.</td>
+</tr>
+</tbody>
+</table>
+<blockquote class="blockquote">
+<p><strong>Size limits</strong> Git is not designed to handle large files, because for each edit the entire file needs to be stored (not only the edits!). If you want to version large files, you need to use Git LFS (Large File Storage): locally will create a reference to a large file, while the actual file will be saved in the <em>object store</em>. Not all hosting services support Git LFS. GitHub has a limit of 100 MB per file, and GitLab has a limit of 10 GB per repository. Additionally, for older commits, Git decreases disk space usage by storing only the differences between files, then compresses files in a single “pack file” (.pack extension) with an addociated index (.idx extension). This cannot be done for large files, which is why they are not supported by Git.</p>
+</blockquote>
+<section id="git-configuration" class="level4">
+<h4 class="anchored" data-anchor-id="git-configuration">Git configuration</h4>
+<p>The minimum configuration is to set your name and email address, which will be associated with your commits. The global flag means that the configuration will be applied to all repositories on your computer. You can also set a default editor for Git commands that require one (e.g.&nbsp;commit messages).</p>
+<pre><code>git config --global user.name &lt;user name&gt;
+git config --global user.email &lt;email&gt;
+
+# Other configuration options:
+git config --global core.editor &lt;editor cmd. Ex: nano&gt; 
+
+# Access the config values:
+git config --get user.name
+
+# Show all configuration values:
+git config --list --show-origin --show-scope
+
+# Define a shortcut for a command:
+git config --global alias.&lt;new name/shortcut for a command&gt; "command to associate with the shortcut"</code></pre>
+<p>A potential problem is the line-end character: Windows uses CRLF, while Linux and Mac use LF (\n). Git can automatically convert line endings to the correct format for the operating system. You can set this behavior with .</p>
+<pre><code># Windows, convert LF to CRLF on checkout, and CRLF to LF on commit
+git config core.autocrlf true 
+
+# Linux/Mac, convert CRLF to LF on commit, but do not modify line endings on checkout
+git config core.autocrlf input</code></pre>
+</section>
+<section id="creating-a-new-repo" class="level4">
+<h4 class="anchored" data-anchor-id="creating-a-new-repo">Creating a new repo</h4>
+<p>You can either turn a local directory into a Git repo (<code>git init</code>, if you add <code>–bare</code> you do not create a working tree) or clone an existing repo (<code>git clone https://github.com/….<repo_url></repo_url></code>). To assess the current status of a repo:</p>
+<pre><code>git status     # Branch name, staged files (in green), unstaged files (red if they are modified), etc...
+git log        # Commit history
+git ls-files   # List files tracked by Git (you can have both tracked and untracked in the same repo)</code></pre>
+</section>
+</section>
+<section id="git-concepts-commits-and-the-git-index." class="level3">
+<h3 class="anchored" data-anchor-id="git-concepts-commits-and-the-git-index.">Git concepts: commits and the Git index.</h3>
+<p>Creating a commit is a 2-step process:</p>
+<ol type="1">
+<li>Stage the changes you want to include in the commit (add them to the <em>Git index</em>, also known as the <em>staging area</em>. It will create a copy in the .git folder) with <code>git add</code>.
+<ul>
+<li>Adding <code>–edit</code> or <code>–patch</code> allows you to select which changes to stage;</li>
+<li><code>git add -u // –update</code> stages all already tracked files but ignores the untracked ones;</li>
+<li>If you change your mind, you can unstage changes with <code>git rm –cached </code>;</li>
+</ul></li>
+<li>Commit the staged changes with <code>git commit -m “commit message…”</code>;
+<ul>
+<li>You can stage and commit in one step with <code>git commit –all -m “commit message…”</code>, but it will only work for already tracked files.</li>
+</ul></li>
+</ol>
+<p>A thing <em>I</em> (literally me, Flavia) have to work on is that not all current changes in the working tree need to be part of the next commit. I usually commit everything (with <code>git add .</code> if I didn’t delete anything, <code>git add -A // –all</code> if I did) to be able to work on the same thing from home and from University, but I should learn to commit only the changes that are related to a specific task. The course suggests that I should work on a temporary/feature branch and then later on merge it into the main one.</p>
+<blockquote class="blockquote">
+<p><strong>Files statuses</strong> - Tracked: file under version control, in the Git index, will be part of the next commit. - Unmodified: tracked, not changed since the last commit. - Modified: tracked files that have been changed. - Staged: in the Git index, will be part of the next commit. To remove them from the index, use <code>git restore –staged &lt; file &gt; </code>. To remove all files from the index at once, use <code>git reset HEAD</code>. Careful: you can remove files from the index using <code>git rm –cached &lt; file &gt;</code> but if you accidentally forget the flag, you will remove the file from the work tree as well; - If you do not add the <code>–staged</code> flag, it resets the file in the work tree to the version in the Git index. This is useful if you want to discard your own edits. If you want to retrieve the content of a file from an even earlier commit you can do <code>git restore -s/–source &lt; commit&gt; &lt; file &gt;</code> or <code>git checkout &lt; commit &gt; &lt; file &gt;</code>, but these commands will overwrite existing versions of the file in your working tree. Restore updates the file <em>only</em> in the working tree while checkout updates both the working tree and the index; - Unstaged: tracked, but not in the Git index, will not be part of the next commit. - To show the differences between two states of a git repo you can use: <code>git diff &lt;file&gt;          git diff --cached          git diff --name-only # show only the file names, not changes.          git show # with no argument shows the latest commit on the current branch (HEAD)</code> - Untracked: files in the folder but not under version control and not in the Git index, will not be part of the next commit. To stop them showing up in the <code>git status</code> output, you can add them to the <code>.gitignore</code> file (for files that should be ignored by every copy of the repository) or in the <code>.git / info / exclude</code> file (for files that should be ignored only in the local copy). - Ignored: not in the Git index, will not be part of the next commit, and will not be shown in <code>git status</code>.</p>
+</blockquote>
+<p>To display the commit history, you can use:</p>
+<pre><code>git log
+git log --oneline                           # compact view
+git log --all --decorate --oneline --graph  # compact view of all the branches</code></pre>
+<p>Commits point to their direct parent, forming a DAG (Directed Acylic Graph) where no commit can be modified without altering all of its descendants.</p>
+</section>
+<section id="git-branches-introduction-to-branched-workflows-and-collaborative-workflow-examples." class="level3">
+<h3 class="anchored" data-anchor-id="git-branches-introduction-to-branched-workflows-and-collaborative-workflow-examples.">Git branches: introduction to branched workflows and collaborative workflow examples.</h3>
+<p>Branching means to diverge from the main line of development:</p>
+<ul>
+<li>they isolate new changes from stable code;</li>
+<li>they isolate changes from different people;</li>
+<li>on online repos, branches can be protected so only selected people can add commits to it.</li>
+</ul>
+<p>To create and move between branches, you can use:</p>
+<pre><code>git branch &lt; name &gt;               # Create a new branch. Without name it lists local branches. Adding the flag -a it lists also the remote ones.
+git switch &lt; name &gt;               # Switch to a branch
+git switch -c &lt; name &gt;            # Create and switch to the new branch
+git branch &lt; name &gt; &lt; reference &gt; # Creates a branch somewhere else than HEAD</code></pre>
+<blockquote class="blockquote">
+<p><strong>The HEAD pointer</strong>: HEAD is a pointer to the latest commit on the current branch. New commits are added under the current HEAD. When you switch branch, HEAD moves too. You can also move HEAD to a specific commit, which is called a <em>detached HEAD state</em> (you are not on any branch). In this state, you can make changes and create commits, but they will be lost if you switch to another branch. To save them, you need to create a new branch and switch to it.</p>
+</blockquote>
+<p>What happes when switching branches? The untracked files are unaffected by branch switches, while the rest of the content is updated to reflect the state of the commit of the active branch. If you have uncommitted changes the situation is a little bit more complicated: if changes do not conflict, then they are “carried over”, but if they do Git will stop the switching.</p>
+</section>
+<section id="branch-management-merge-rebase-and-cherry-pick." class="level3">
+<h3 class="anchored" data-anchor-id="branch-management-merge-rebase-and-cherry-pick.">Branch management: merge, rebase and cherry-pick.</h3>
+<p>Merging (<code>git merge &lt; branch name &gt;</code>) means to incorporate changes from the specified branch into the currently active branch. There are two types of merging:</p>
+<ul>
+<li><strong>Fast-forward merge</strong>: this is possible if the branches have not diverged. If keeping an exact record of the history some people like to add a merge commit even if a fast-forward merge is possible, by adding <code>–no-ff</code>;</li>
+<li><strong>3-way merge</strong>: it creates an additional merge commit where conflicts may occur and need to be manually resolved. This preserves history perfectly but it can lead to messy histories. A merge can be aborted with <code> git merge –abort</code>.</li>
+<li>Branches can be moved/re-rooted on a different base commit by moving to the branch and then using <code>git rebase &lt; name of the branch to rebase on &gt;</code>. This command can generate conflicts which need to be resolved like during merges. This is kind of an additional type, which we can call <strong>rebase + fast forward merge</strong>: the history is cleaner but you also lose some branching history.</li>
+</ul>
+<p>Choosing a type of merging comes from personal preference of readability and history-preservation trafeoff: honestly, they showed us an example of a messy history and I kinda prefer the cleaner look. Branches that are not used anymore can (and should) be deleted. To do so, first checkout of them and delete them:</p>
+<pre><code>git branch -d &lt; branch &gt;    # Safe option, only fully merged branches
+git branch -D &lt; branch &gt;    # Not safe</code></pre>
+<blockquote class="blockquote">
+<p><strong>Branch management strategies</strong>: you can decide to manage your project as you may see fit. The two most used strategies are:</p>
+<ul>
+<li><strong>GitFlow</strong>: the idea is to always have a <em>dev</em> branch on which new features are added until ready for a release;</li>
+<li><strong>Trunk-based development</strong>: there is not a <em>dev</em> branch but all features are merged directly to <em>main</em> when they are finished. Better when code is distributed via formal releases.</li>
+</ul>
+</blockquote>
+<p>If you are not sure about merging a whole branch, you can cherry pick (<code>git cherry-pick &lt; commit &gt;</code>) which means to merge a single commit into the current branch, and not the whole branch itself. If, instead, you want to discard all edits you’ve done you can checkout an entire repo to an earlier commit (<code>git checkout &lt; commit &gt;</code>) which will restore the working tree, the index and will move the HEAD pointer to that commit. After the checkout you will enter a detached HEAD state, so you should go back to a regular branch.</p>
+</section>
+<section id="working-with-remotes-collaborating-with-git-and-github." class="level3">
+<h3 class="anchored" data-anchor-id="working-with-remotes-collaborating-with-git-and-github.">Working with remotes: collaborating with Git and GitHub.</h3>
+<p>A remote is a copy of Git repository that is stored on a server (GitHub or GitLab are common choices), which allows to backup the work, collaborate and distribute the work. A remote can be added using <code>git remote add &lt; remote name &gt; &lt; remote url &gt;</code> and the URL can be changed with <code>git remote set-url</code>.</p>
+<blockquote class="blockquote">
+<p><strong>HTTPS vs SSH</strong>: HTTPS and SSH are two different network protocols that machines use to communicate. If you clone via HTTPS you will need to provide a personal access token (PAT) as authentication credentials: if the repo is public the credentials are needed to push but not pull. If you clone via SSH you will need to add a public SSH key to the GitHub account. To create a PAT on Github, you go in your user profile, click on Settings and then Developer settings. There you will find Personal access tokens &gt; Tokens (classic) &gt; Generate new token (classic).</p>
+</blockquote>
+<p>It is important, when working collaboratively, to check for edits on the branch by doing <code>git fetch</code>: if the history diverges, we can choose to either to <code>git pull –no-rebase</code> to merge them, or <code>git pull –rebase</code>.</p>
+<blockquote class="blockquote">
+<p>Note: <code>git pull</code> is just a shortcut for <code>git fetch</code> followed by <code>git merge –ff-only</code>.</p>
+</blockquote>
+<p>Earlier we talked about branches getting deleted if not in use anymore: when working remotely the deletion of a branch must be pushed! After doing <code>git branch -d</code> then you must run <code>git push origin –delete</code>. Other people having a local copy of the branch will not have it deleted with a normal <code>git fetch</code>: deleting while synchronicing is only possible by doing <code>git fetch –prune</code>.</p>
+<table class="caption-top table">
+<colgroup>
+<col style="width: 50%">
+<col style="width: 50%">
+</colgroup>
+<thead>
+<tr class="header">
+<th>Summary of commands (no commands)</th>
+<th></th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td>Command</td>
+<td>What it does</td>
+</tr>
+<tr class="even">
+<td>——–</td>
+<td>——–</td>
+</tr>
+<tr class="odd">
+<td><code>git clone</code></td>
+<td>Create a local copy from an existing online repo</td>
+</tr>
+<tr class="even">
+<td><code>git remote add origin</code></td>
+<td>Add a new remote to an existing local repo</td>
+</tr>
+<tr class="odd">
+<td><code>git push</code></td>
+<td>Push new commits on current branch to remote</td>
+</tr>
+<tr class="even">
+<td><code>git push -u origin</code></td>
+<td>Additionally sets the upstream branch. Needed when pushing a branch for the first time, but not needed if the local branch was created from a remote branch</td>
+</tr>
+<tr class="odd">
+<td><code>git push –force</code></td>
+<td>Overwrites the branch on the remote with the local version (dangerous)</td>
+</tr>
+<tr class="even">
+<td><code>git fetch</code></td>
+<td>Download all updates, even for non active branches</td>
+</tr>
+<tr class="odd">
+<td><code>git pull</code></td>
+<td>Download all updates and merge changes</td>
+</tr>
+<tr class="even">
+<td><code>git pull –no-rebase</code></td>
+<td>Fetch + 3-way merge active branch</td>
+</tr>
+<tr class="odd">
+<td><code>git pull –rebase</code></td>
+<td>Fetch + rebase active branch</td>
+</tr>
+<tr class="even">
+<td><code>git pull –ff-only</code></td>
+<td>Fetch + fast-forward merge</td>
+</tr>
+<tr class="odd">
+<td><code>git remote -v</code></td>
+<td>Display the remote(s) associated to a repo</td>
+</tr>
+<tr class="even">
+<td><code>git branch -vva</code></td>
+<td>List branches of repo and their associated upstream (if any)</td>
+</tr>
+</tbody>
+</table>
+<p>When working collaboratively you will have to get accostumed to <strong>Pull Request</strong> (GitHub)/ <strong>Merge Request</strong> (GitLab), which are a way to perform a merge operation on GitHub/GitLab instead of locally. This happens because remote, collaborative branches are usually protected and it gives the opportunity to repository owners to review changes before making them. To open a Pull request on GitHub:</p>
+<ol type="1">
+<li>First go on the project’s page on GitHub and go on the Pull requests tab;</li>
+<li>Click on “New pull request” and select the branches to merge: if there are conflicts, you might need to rebase your branche and resolve them;</li>
+<li>If everything is in order, click on “Create pull request” (optionally, enter a message for the peope that will review your pull request!).</li>
+</ol>
+<p>I will not write here about GitLab because I personally like GitHub more.</p>
+</section>
+</section>
+<section id="day-2-git-advanced-topics" class="level2">
+<h2 class="anchored" data-anchor-id="day-2-git-advanced-topics">Day 2: Git advanced topics</h2>
+<section id="rewriting-history-interactive-rebase-git-reset-and-commit-amending." class="level3">
+<h3 class="anchored" data-anchor-id="rewriting-history-interactive-rebase-git-reset-and-commit-amending.">Rewriting history: interactive rebase, git reset and commit amending.</h3>
+</section>
+<section id="the-detached-head-state-explained." class="level3">
+<h3 class="anchored" data-anchor-id="the-detached-head-state-explained.">The detached HEAD state explained.</h3>
+</section>
+<section id="the-git-stash." class="level3">
+<h3 class="anchored" data-anchor-id="the-git-stash.">The Git stash.</h3>
+</section>
+<section id="git-tags-label-important-commits." class="level3">
+<h3 class="anchored" data-anchor-id="git-tags-label-important-commits.">Git tags: label important commits.</h3>
+</section>
+<section id="github-creating-new-projects-adding-users-and-collaborating-with-them." class="level3">
+<h3 class="anchored" data-anchor-id="github-creating-new-projects-adding-users-and-collaborating-with-them.">GitHub: creating new projects, adding users and collaborating with them.</h3>
+</section>
+</section>
+<section id="optional-modules" class="level2">
+<h2 class="anchored" data-anchor-id="optional-modules">Optional modules</h2>
+<section id="github-actions-and-gitlab-cicd-writing-automated-pipelines." class="level3">
+<h3 class="anchored" data-anchor-id="github-actions-and-gitlab-cicd-writing-automated-pipelines.">GitHub Actions and GitLab CI/CD: writing automated pipelines.</h3>
+</section>
+<section id="git-submodules-embed-a-git-repository-as-a-subdirectory-of-another-git-repo." class="level3">
+<h3 class="anchored" data-anchor-id="git-submodules-embed-a-git-repository-as-a-subdirectory-of-another-git-repo.">Git submodules: embed a Git repository as a subdirectory of another Git repo.</h3>
+</section>
+<section id="git-lfs-versioning-large-files-with-git." class="level3">
+<h3 class="anchored" data-anchor-id="git-lfs-versioning-large-files-with-git.">Git LFS: versioning large files with Git.</h3>
+
+
+</section>
+</section>
+</section>
+
+</main> <!-- /main -->
+<script id="quarto-html-after-body" type="application/javascript">
+  window.document.addEventListener("DOMContentLoaded", function (event) {
+    const icon = "";
+    const anchorJS = new window.AnchorJS();
+    anchorJS.options = {
+      placement: 'right',
+      icon: icon
+    };
+    anchorJS.add('.anchored');
+    const isCodeAnnotation = (el) => {
+      for (const clz of el.classList) {
+        if (clz.startsWith('code-annotation-')) {                     
+          return true;
+        }
+      }
+      return false;
+    }
+    const onCopySuccess = function(e) {
+      // button target
+      const button = e.trigger;
+      // don't keep focus
+      button.blur();
+      // flash "checked"
+      button.classList.add('code-copy-button-checked');
+      var currentTitle = button.getAttribute("title");
+      button.setAttribute("title", "Copied!");
+      let tooltip;
+      if (window.bootstrap) {
+        button.setAttribute("data-bs-toggle", "tooltip");
+        button.setAttribute("data-bs-placement", "left");
+        button.setAttribute("data-bs-title", "Copied!");
+        tooltip = new bootstrap.Tooltip(button, 
+          { trigger: "manual", 
+            customClass: "code-copy-button-tooltip",
+            offset: [0, -8]});
+        tooltip.show();    
+      }
+      setTimeout(function() {
+        if (tooltip) {
+          tooltip.hide();
+          button.removeAttribute("data-bs-title");
+          button.removeAttribute("data-bs-toggle");
+          button.removeAttribute("data-bs-placement");
+        }
+        button.setAttribute("title", currentTitle);
+        button.classList.remove('code-copy-button-checked');
+      }, 1000);
+      // clear code selection
+      e.clearSelection();
+    }
+    const getTextToCopy = function(trigger) {
+      const outerScaffold = trigger.parentElement.cloneNode(true);
+      const codeEl = outerScaffold.querySelector('code');
+      for (const childEl of codeEl.children) {
+        if (isCodeAnnotation(childEl)) {
+          childEl.remove();
+        }
+      }
+      return codeEl.innerText;
+    }
+    const clipboard = new window.ClipboardJS('.code-copy-button:not([data-in-quarto-modal])', {
+      text: getTextToCopy
+    });
+    clipboard.on('success', onCopySuccess);
+    if (window.document.getElementById('quarto-embedded-source-code-modal')) {
+      const clipboardModal = new window.ClipboardJS('.code-copy-button[data-in-quarto-modal]', {
+        text: getTextToCopy,
+        container: window.document.getElementById('quarto-embedded-source-code-modal')
+      });
+      clipboardModal.on('success', onCopySuccess);
+    }
+      var localhostRegex = new RegExp(/^(?:http|https):\/\/localhost\:?[0-9]*\//);
+      var mailtoRegex = new RegExp(/^mailto:/);
+        var filterRegex = new RegExp("https:\/\/flavialeotta\.github\.io\/self-learning\/");
+      var isInternal = (href) => {
+          return filterRegex.test(href) || localhostRegex.test(href) || mailtoRegex.test(href);
+      }
+      // Inspect non-navigation links and adorn them if external
+     var links = window.document.querySelectorAll('a[href]:not(.nav-link):not(.navbar-brand):not(.toc-action):not(.sidebar-link):not(.sidebar-item-toggle):not(.pagination-link):not(.no-external):not([aria-hidden]):not(.dropdown-item):not(.quarto-navigation-tool):not(.about-link)');
+      for (var i=0; i<links.length; i++) {
+        const link = links[i];
+        if (!isInternal(link.href)) {
+          // undo the damage that might have been done by quarto-nav.js in the case of
+          // links that we want to consider external
+          if (link.dataset.originalHref !== undefined) {
+            link.href = link.dataset.originalHref;
+          }
+        }
+      }
+    function tippyHover(el, contentFn, onTriggerFn, onUntriggerFn) {
+      const config = {
+        allowHTML: true,
+        maxWidth: 500,
+        delay: 100,
+        arrow: false,
+        appendTo: function(el) {
+            return el.parentElement;
+        },
+        interactive: true,
+        interactiveBorder: 10,
+        theme: 'quarto',
+        placement: 'bottom-start',
+      };
+      if (contentFn) {
+        config.content = contentFn;
+      }
+      if (onTriggerFn) {
+        config.onTrigger = onTriggerFn;
+      }
+      if (onUntriggerFn) {
+        config.onUntrigger = onUntriggerFn;
+      }
+      window.tippy(el, config); 
+    }
+    const noterefs = window.document.querySelectorAll('a[role="doc-noteref"]');
+    for (var i=0; i<noterefs.length; i++) {
+      const ref = noterefs[i];
+      tippyHover(ref, function() {
+        // use id or data attribute instead here
+        let href = ref.getAttribute('data-footnote-href') || ref.getAttribute('href');
+        try { href = new URL(href).hash; } catch {}
+        const id = href.replace(/^#\/?/, "");
+        const note = window.document.getElementById(id);
+        if (note) {
+          return note.innerHTML;
+        } else {
+          return "";
+        }
+      });
+    }
+    const xrefs = window.document.querySelectorAll('a.quarto-xref');
+    const processXRef = (id, note) => {
+      // Strip column container classes
+      const stripColumnClz = (el) => {
+        el.classList.remove("page-full", "page-columns");
+        if (el.children) {
+          for (const child of el.children) {
+            stripColumnClz(child);
+          }
+        }
+      }
+      stripColumnClz(note)
+      if (id === null || id.startsWith('sec-')) {
+        // Special case sections, only their first couple elements
+        const container = document.createElement("div");
+        if (note.children && note.children.length > 2) {
+          container.appendChild(note.children[0].cloneNode(true));
+          for (let i = 1; i < note.children.length; i++) {
+            const child = note.children[i];
+            if (child.tagName === "P" && child.innerText === "") {
+              continue;
+            } else {
+              container.appendChild(child.cloneNode(true));
+              break;
+            }
+          }
+          if (window.Quarto?.typesetMath) {
+            window.Quarto.typesetMath(container);
+          }
+          return container.innerHTML
+        } else {
+          if (window.Quarto?.typesetMath) {
+            window.Quarto.typesetMath(note);
+          }
+          return note.innerHTML;
+        }
+      } else {
+        // Remove any anchor links if they are present
+        const anchorLink = note.querySelector('a.anchorjs-link');
+        if (anchorLink) {
+          anchorLink.remove();
+        }
+        if (window.Quarto?.typesetMath) {
+          window.Quarto.typesetMath(note);
+        }
+        if (note.classList.contains("callout")) {
+          return note.outerHTML;
+        } else {
+          return note.innerHTML;
+        }
+      }
+    }
+    for (var i=0; i<xrefs.length; i++) {
+      const xref = xrefs[i];
+      tippyHover(xref, undefined, function(instance) {
+        instance.disable();
+        let url = xref.getAttribute('href');
+        let hash = undefined; 
+        if (url.startsWith('#')) {
+          hash = url;
+        } else {
+          try { hash = new URL(url).hash; } catch {}
+        }
+        if (hash) {
+          const id = hash.replace(/^#\/?/, "");
+          const note = window.document.getElementById(id);
+          if (note !== null) {
+            try {
+              const html = processXRef(id, note.cloneNode(true));
+              instance.setContent(html);
+            } finally {
+              instance.enable();
+              instance.show();
+            }
+          } else {
+            // See if we can fetch this
+            fetch(url.split('#')[0])
+            .then(res => res.text())
+            .then(html => {
+              const parser = new DOMParser();
+              const htmlDoc = parser.parseFromString(html, "text/html");
+              const note = htmlDoc.getElementById(id);
+              if (note !== null) {
+                const html = processXRef(id, note);
+                instance.setContent(html);
+              } 
+            }).finally(() => {
+              instance.enable();
+              instance.show();
+            });
+          }
+        } else {
+          // See if we can fetch a full url (with no hash to target)
+          // This is a special case and we should probably do some content thinning / targeting
+          fetch(url)
+          .then(res => res.text())
+          .then(html => {
+            const parser = new DOMParser();
+            const htmlDoc = parser.parseFromString(html, "text/html");
+            const note = htmlDoc.querySelector('main.content');
+            if (note !== null) {
+              // This should only happen for chapter cross references
+              // (since there is no id in the URL)
+              // remove the first header
+              if (note.children.length > 0 && note.children[0].tagName === "HEADER") {
+                note.children[0].remove();
+              }
+              const html = processXRef(null, note);
+              instance.setContent(html);
+            } 
+          }).finally(() => {
+            instance.enable();
+            instance.show();
+          });
+        }
+      }, function(instance) {
+      });
+    }
+        let selectedAnnoteEl;
+        const selectorForAnnotation = ( cell, annotation) => {
+          let cellAttr = 'data-code-cell="' + cell + '"';
+          let lineAttr = 'data-code-annotation="' +  annotation + '"';
+          const selector = 'span[' + cellAttr + '][' + lineAttr + ']';
+          return selector;
+        }
+        const selectCodeLines = (annoteEl) => {
+          const doc = window.document;
+          const targetCell = annoteEl.getAttribute("data-target-cell");
+          const targetAnnotation = annoteEl.getAttribute("data-target-annotation");
+          const annoteSpan = window.document.querySelector(selectorForAnnotation(targetCell, targetAnnotation));
+          const lines = annoteSpan.getAttribute("data-code-lines").split(",");
+          const lineIds = lines.map((line) => {
+            return targetCell + "-" + line;
+          })
+          let top = null;
+          let height = null;
+          let parent = null;
+          if (lineIds.length > 0) {
+              //compute the position of the single el (top and bottom and make a div)
+              const el = window.document.getElementById(lineIds[0]);
+              top = el.offsetTop;
+              height = el.offsetHeight;
+              parent = el.parentElement.parentElement;
+            if (lineIds.length > 1) {
+              const lastEl = window.document.getElementById(lineIds[lineIds.length - 1]);
+              const bottom = lastEl.offsetTop + lastEl.offsetHeight;
+              height = bottom - top;
+            }
+            if (top !== null && height !== null && parent !== null) {
+              // cook up a div (if necessary) and position it 
+              let div = window.document.getElementById("code-annotation-line-highlight");
+              if (div === null) {
+                div = window.document.createElement("div");
+                div.setAttribute("id", "code-annotation-line-highlight");
+                div.style.position = 'absolute';
+                parent.appendChild(div);
+              }
+              div.style.top = top - 2 + "px";
+              div.style.height = height + 4 + "px";
+              div.style.left = 0;
+              let gutterDiv = window.document.getElementById("code-annotation-line-highlight-gutter");
+              if (gutterDiv === null) {
+                gutterDiv = window.document.createElement("div");
+                gutterDiv.setAttribute("id", "code-annotation-line-highlight-gutter");
+                gutterDiv.style.position = 'absolute';
+                const codeCell = window.document.getElementById(targetCell);
+                const gutter = codeCell.querySelector('.code-annotation-gutter');
+                gutter.appendChild(gutterDiv);
+              }
+              gutterDiv.style.top = top - 2 + "px";
+              gutterDiv.style.height = height + 4 + "px";
+            }
+            selectedAnnoteEl = annoteEl;
+          }
+        };
+        const unselectCodeLines = () => {
+          const elementsIds = ["code-annotation-line-highlight", "code-annotation-line-highlight-gutter"];
+          elementsIds.forEach((elId) => {
+            const div = window.document.getElementById(elId);
+            if (div) {
+              div.remove();
+            }
+          });
+          selectedAnnoteEl = undefined;
+        };
+          // Handle positioning of the toggle
+      window.addEventListener(
+        "resize",
+        throttle(() => {
+          elRect = undefined;
+          if (selectedAnnoteEl) {
+            selectCodeLines(selectedAnnoteEl);
+          }
+        }, 10)
+      );
+      function throttle(fn, ms) {
+      let throttle = false;
+      let timer;
+        return (...args) => {
+          if(!throttle) { // first call gets through
+              fn.apply(this, args);
+              throttle = true;
+          } else { // all the others get throttled
+              if(timer) clearTimeout(timer); // cancel #2
+              timer = setTimeout(() => {
+                fn.apply(this, args);
+                timer = throttle = false;
+              }, ms);
+          }
+        };
+      }
+        // Attach click handler to the DT
+        const annoteDls = window.document.querySelectorAll('dt[data-target-cell]');
+        for (const annoteDlNode of annoteDls) {
+          annoteDlNode.addEventListener('click', (event) => {
+            const clickedEl = event.target;
+            if (clickedEl !== selectedAnnoteEl) {
+              unselectCodeLines();
+              const activeEl = window.document.querySelector('dt[data-target-cell].code-annotation-active');
+              if (activeEl) {
+                activeEl.classList.remove('code-annotation-active');
+              }
+              selectCodeLines(clickedEl);
+              clickedEl.classList.add('code-annotation-active');
+            } else {
+              // Unselect the line
+              unselectCodeLines();
+              clickedEl.classList.remove('code-annotation-active');
+            }
+          });
+        }
+    const findCites = (el) => {
+      const parentEl = el.parentElement;
+      if (parentEl) {
+        const cites = parentEl.dataset.cites;
+        if (cites) {
+          return {
+            el,
+            cites: cites.split(' ')
+          };
+        } else {
+          return findCites(el.parentElement)
+        }
+      } else {
+        return undefined;
+      }
+    };
+    var bibliorefs = window.document.querySelectorAll('a[role="doc-biblioref"]');
+    for (var i=0; i<bibliorefs.length; i++) {
+      const ref = bibliorefs[i];
+      const citeInfo = findCites(ref);
+      if (citeInfo) {
+        tippyHover(citeInfo.el, function() {
+          var popup = window.document.createElement('div');
+          citeInfo.cites.forEach(function(cite) {
+            var citeDiv = window.document.createElement('div');
+            citeDiv.classList.add('hanging-indent');
+            citeDiv.classList.add('csl-entry');
+            var biblioDiv = window.document.getElementById('ref-' + cite);
+            if (biblioDiv) {
+              citeDiv.innerHTML = biblioDiv.innerHTML;
+            }
+            popup.appendChild(citeDiv);
+          });
+          return popup.innerHTML;
+        });
+      }
+    }
+  });
+  </script>
+</div> <!-- /content -->
+
+
+
+
+</body></html>
